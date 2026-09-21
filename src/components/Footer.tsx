@@ -30,9 +30,10 @@ const columns = [
 
 export function Footer() {
   return (
-    <footer className="mt-16 border-t border-slate-200 bg-white">
-      <div className="mx-auto max-w-[1600px] px-4 py-12 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
+    <footer className="relative bg-white">
+      <div className="h-1 bg-gradient-to-r from-brand-500 via-purple-500 to-brand-500" />
+      <div className="mx-auto max-w-[1600px] px-4 py-14 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-2 gap-10 sm:grid-cols-4">
           <div className="col-span-2 sm:col-span-1">
             <Logo />
             <p className="mt-3 max-w-xs text-sm text-slate-500">
@@ -44,12 +45,12 @@ export function Footer() {
               <p className="text-sm font-semibold text-slate-900">
                 {column.title}
               </p>
-              <ul className="mt-3 space-y-2">
+              <ul className="mt-4 space-y-2.5">
                 {column.links.map((link) => (
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-sm text-slate-500 hover:text-slate-800"
+                      className="text-sm text-slate-500 transition-colors hover:text-brand-600"
                     >
                       {link.label}
                     </Link>
@@ -59,7 +60,7 @@ export function Footer() {
             </div>
           ))}
         </div>
-        <div className="mt-10 border-t border-slate-100 pt-6 text-sm text-slate-400">
+        <div className="mt-12 border-t border-slate-100 pt-6 text-sm text-slate-400">
           © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
         </div>
       </div>
