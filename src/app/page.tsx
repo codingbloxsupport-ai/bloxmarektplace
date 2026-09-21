@@ -17,8 +17,17 @@ const trustPoints = [
 export default function LandingPage() {
   return (
     <div>
-      <section className="bg-dot-grid relative overflow-hidden border-b border-border bg-gradient-to-b from-brand-50 via-white to-white">
-        <div className="mx-auto grid max-w-[1400px] grid-cols-1 items-center gap-14 px-6 py-20 lg:grid-cols-2 lg:gap-10 lg:px-10 lg:py-28">
+      <section className="relative overflow-hidden border-b border-border bg-white">
+        <div
+          className="absolute inset-0 hidden bg-cover bg-right bg-no-repeat lg:block"
+          style={{
+            backgroundImage:
+              "linear-gradient(to right, white 0%, rgba(255,255,255,.95) 25%, rgba(255,255,255,.35) 65%, rgba(255,255,255,0) 100%), url('/hero/roblox-city-background.webp')",
+          }}
+        />
+        <div className="bg-dot-grid absolute inset-0 opacity-40 lg:hidden" />
+
+        <div className="relative mx-auto grid max-w-[1400px] grid-cols-1 items-center gap-14 px-6 py-20 lg:grid-cols-2 lg:gap-10 lg:px-10 lg:py-28">
           <div className="text-center lg:text-left">
             <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1 text-xs font-semibold uppercase tracking-wide text-brand-600 shadow-sm ring-1 ring-inset ring-brand-100">
               <Sparkles className="h-3.5 w-3.5" />

@@ -1,8 +1,11 @@
-Place these files here (referenced by `src/components/HeroVisual.tsx`):
+Assets for `src/components/HeroVisual.tsx` and the hero background in
+`src/app/page.tsx`:
 
-- `roblox-character.webp`
-- `roblox-city-background.webp`
-- `floating-cube-1.webp`
-- `floating-cube-2.webp`
+- `roblox-city-background.webp` — added (converted from the supplied JPG)
+- `roblox-character.webp` — added (background removed via flood-fill from
+  the supplied JPG, so it composites as a transparent cutout)
+- `floating-cube-1.webp` — still needed
+- `floating-cube-2.webp` — still needed
 
-Until they're added, the hero renders without them (no broken-image icons).
+Until the remaining files are added, those elements render as nothing
+(no broken-image icons) rather than a placeholder.
