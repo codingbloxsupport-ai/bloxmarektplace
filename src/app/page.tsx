@@ -1,6 +1,7 @@
 import Link from "next/link";
 import {
   ArrowRight,
+  Check,
   Handshake,
   Lock,
   MessageCircle,
@@ -10,6 +11,14 @@ import {
   TrendingUp,
 } from "lucide-react";
 import { siteConfig } from "@/config/site";
+import { HeroVisual } from "@/components/HeroVisual";
+
+const trustPoints = [
+  "Secure escrow payments",
+  "Verified sellers",
+  "Full ownership transfer",
+  "No listing fees",
+];
 
 const valueProps = [
   {
@@ -37,51 +46,66 @@ const valueProps = [
 const steps = [
   {
     icon: Search,
-    title: "Browse or list",
-    body: "Buyers explore listings by category, price, and revenue. Sellers submit their game in minutes.",
+    title: "Find a game",
+    body: "Browse verified listings by category, price, and revenue to find the right fit.",
   },
   {
     icon: MessageCircle,
     title: "Talk it through",
-    body: "Message directly to ask questions, share analytics, and agree on terms.",
+    body: "Message the seller directly to ask questions and agree on terms.",
   },
   {
     icon: Lock,
     title: "Close with escrow",
-    body: "Funds are held safely until ownership is confirmed transferred — then released to the seller.",
+    body: "Pay securely — funds release to the seller only once ownership is confirmed transferred.",
   },
 ];
 
 export default function LandingPage() {
   return (
     <div>
-      <section className="border-b border-slate-200 bg-gradient-to-b from-brand-50 to-white">
-        <div className="mx-auto max-w-[1200px] px-4 py-20 text-center sm:px-6 lg:px-8">
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1 text-xs font-semibold text-brand-600 ring-1 ring-inset ring-brand-100">
-            <Sparkles className="h-3.5 w-3.5" />
-            Just launched — be one of our first sellers
-          </span>
-          <h1 className="mx-auto mt-6 max-w-3xl text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">
-            Buy and sell Roblox games, safely.
-          </h1>
-          <p className="mx-auto mt-4 max-w-xl text-lg text-slate-500">
-            {siteConfig.description}
-          </p>
-          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Link
-              href="/browse"
-              className="flex w-full items-center justify-center gap-1.5 rounded-xl bg-brand-500 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-brand-600 sm:w-auto"
-            >
-              Browse Marketplace
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-            <Link
-              href="/sell"
-              className="flex w-full items-center justify-center rounded-xl border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50 sm:w-auto"
-            >
-              Sell Your Game
-            </Link>
+      <section className="overflow-hidden border-b border-slate-200 bg-gradient-to-b from-brand-50 to-white">
+        <div className="mx-auto grid max-w-[1200px] grid-cols-1 items-center gap-12 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:px-8 lg:py-28">
+          <div className="text-center lg:text-left">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1 text-xs font-semibold text-brand-600 ring-1 ring-inset ring-brand-100">
+              <Sparkles className="h-3.5 w-3.5" />
+              Just launched — be one of our first sellers
+            </span>
+            <h1 className="mt-6 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">
+              Buy and sell Roblox games{" "}
+              <span className="bg-gradient-to-r from-brand-500 to-purple-600 bg-clip-text text-transparent">
+                with confidence.
+              </span>
+            </h1>
+            <p className="mx-auto mt-4 max-w-xl text-lg text-slate-500 lg:mx-0">
+              {siteConfig.description}
+            </p>
+            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row lg:justify-start">
+              <Link
+                href="/browse"
+                className="flex w-full items-center justify-center gap-1.5 rounded-xl bg-brand-500 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-brand-600 sm:w-auto"
+              >
+                Browse Marketplace
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                href="/sell"
+                className="flex w-full items-center justify-center rounded-xl border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50 sm:w-auto"
+              >
+                Sell Your Game
+              </Link>
+            </div>
+            <ul className="mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs font-medium text-slate-500 lg:justify-start">
+              {trustPoints.map((point) => (
+                <li key={point} className="flex items-center gap-1.5">
+                  <Check className="h-3.5 w-3.5 text-emerald-500" />
+                  {point}
+                </li>
+              ))}
+            </ul>
           </div>
+
+          <HeroVisual />
         </div>
       </section>
 
@@ -111,34 +135,31 @@ export default function LandingPage() {
               How it works
             </h2>
             <p className="mt-2 text-slate-500">
-              A straightforward, escrow-backed process for both sides of the
-              deal.
+              A simple, secure way to buy or sell a Roblox game.
             </p>
           </div>
 
-          <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-3">
+          <div className="relative mt-10 grid grid-cols-1 gap-8 sm:grid-cols-3 sm:gap-6">
+            <span className="absolute left-[16.5%] right-[16.5%] top-6 hidden h-px bg-slate-200 sm:block" />
             {steps.map((step, i) => (
-              <div
-                key={step.title}
-                className="relative rounded-2xl border border-slate-200 bg-white p-5"
-              >
-                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
-                  <step.icon className="h-5 w-5" />
-                </span>
-                <span className="absolute right-5 top-5 text-2xl font-extrabold text-slate-100">
+              <div key={step.title} className="relative flex items-start gap-4 sm:flex-col sm:items-start">
+                <span className="relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-brand-500 text-sm font-bold text-white shadow-sm">
                   {i + 1}
                 </span>
-                <p className="mt-4 text-sm font-semibold text-slate-800">
-                  {step.title}
-                </p>
-                <p className="mt-1 text-sm text-slate-500">{step.body}</p>
+                <div className="sm:mt-4">
+                  <p className="flex items-center gap-2 text-sm font-semibold text-slate-800">
+                    <step.icon className="h-4 w-4 text-brand-500" />
+                    {step.title}
+                  </p>
+                  <p className="mt-1 text-sm text-slate-500">{step.body}</p>
+                </div>
               </div>
             ))}
           </div>
 
           <Link
             href="/how-it-works"
-            className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600 hover:text-brand-700"
+            className="mt-10 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600 hover:text-brand-700"
           >
             See the full walkthrough
             <ArrowRight className="h-4 w-4" />

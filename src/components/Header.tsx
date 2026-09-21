@@ -152,6 +152,13 @@ export function Header() {
             )}
           </div>
 
+          <Link
+            href="/signup"
+            className="hidden shrink-0 rounded-lg bg-brand-500 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-brand-600 lg:inline-block"
+          >
+            Get Started
+          </Link>
+
           <button
             type="button"
             aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
