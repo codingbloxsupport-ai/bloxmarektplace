@@ -1,4 +1,18 @@
-import { Lock, ShieldCheck } from "lucide-react";
+import {
+  BadgeCheck,
+  Heart,
+  Lock,
+  MousePointer2,
+  ShieldCheck,
+  TrendingUp,
+} from "lucide-react";
+
+const miniCards = [
+  { gradient: ["#4ade80", "#15803d"], featured: true },
+  { gradient: ["#60a5fa", "#1e3a8a"], featured: false },
+  { gradient: ["#a855f7", "#1e1b4b"], featured: false },
+  { gradient: ["#fb923c", "#7c2d12"], featured: false },
+];
 
 export function HeroVisual() {
   return (
@@ -7,7 +21,7 @@ export function HeroVisual() {
       <div className="absolute -bottom-14 -right-10 h-72 w-72 rounded-full bg-purple-300/40 blur-3xl" />
       <div className="bg-dot-grid absolute inset-0 -z-10 rounded-[2rem] opacity-60" />
 
-      <div className="relative">
+      <div className="animate-float-laptop relative">
         {/* Laptop screen */}
         <div className="relative rounded-t-2xl rounded-b-md border-[7px] border-slate-800 bg-slate-800 shadow-[0_30px_60px_-15px_rgba(15,23,42,0.35)]">
           <div className="overflow-hidden rounded-lg bg-white">
@@ -15,39 +29,69 @@ export function HeroVisual() {
               <span className="h-2.5 w-2.5 rounded-full bg-rose-300" />
               <span className="h-2.5 w-2.5 rounded-full bg-amber-300" />
               <span className="h-2.5 w-2.5 rounded-full bg-emerald-300" />
-              <span className="ml-3 h-5 flex-1 rounded-full bg-slate-100" />
+              <span className="ml-3 flex h-5 flex-1 items-center rounded-full bg-slate-100 px-2.5 text-[10px] font-medium text-slate-400">
+                yourmarketplace.com/browse
+              </span>
             </div>
 
-            <div className="space-y-4 p-5">
-              <div className="flex items-center justify-between">
-                <span className="h-3 w-24 rounded-full bg-slate-200" />
-                <span className="h-6 w-6 rounded-full bg-gradient-to-br from-brand-500 to-purple-500" />
+            <div className="flex items-center justify-between border-b border-slate-100 px-4 py-2.5">
+              <div className="flex items-center gap-1.5">
+                <span className="h-4 w-4 rounded-md bg-gradient-to-br from-brand-500 to-purple-500" />
+                <span className="text-[11px] font-bold text-slate-700">
+                  Marketplace
+                </span>
               </div>
-
-              <div className="flex gap-2">
-                <span className="h-6 w-16 rounded-full bg-brand-100" />
-                <span className="h-6 w-16 rounded-full bg-slate-100" />
-                <span className="h-6 w-16 rounded-full bg-slate-100" />
+              <div className="flex gap-1.5">
+                <span className="rounded-full bg-brand-500 px-2 py-0.5 text-[9px] font-semibold text-white">
+                  All Games
+                </span>
+                <span className="rounded-full bg-slate-100 px-2 py-0.5 text-[9px] font-medium text-slate-400">
+                  Tycoon
+                </span>
+                <span className="rounded-full bg-slate-100 px-2 py-0.5 text-[9px] font-medium text-slate-400">
+                  Anime
+                </span>
               </div>
+            </div>
 
-              <div className="grid grid-cols-2 gap-3">
-                {[
-                  "from-brand-400 to-brand-600",
-                  "from-purple-400 to-purple-600",
-                  "from-emerald-400 to-emerald-600",
-                  "from-amber-400 to-amber-600",
-                ].map((gradient) => (
+            <div className="relative grid grid-cols-2 gap-3 p-4">
+              {miniCards.map((card, i) => (
+                <div
+                  key={i}
+                  className={`animate-hero-card-${i + 1} overflow-hidden rounded-lg border border-slate-100`}
+                >
                   <div
-                    key={gradient}
-                    className="overflow-hidden rounded-xl border border-slate-100"
+                    className="relative flex h-14 items-center justify-center"
+                    style={{
+                      background: `linear-gradient(135deg, ${card.gradient[0]}, ${card.gradient[1]})`,
+                    }}
                   >
-                    <div className={`h-16 bg-gradient-to-br ${gradient}`} />
-                    <div className="space-y-1.5 p-2.5">
-                      <span className="block h-2 w-3/4 rounded-full bg-slate-200" />
-                      <span className="block h-2 w-1/2 rounded-full bg-slate-100" />
+                    {card.featured && (
+                      <span className="absolute left-1.5 top-1.5 rounded-full bg-white/90 px-1.5 py-0.5 text-[7px] font-bold text-brand-600">
+                        Featured
+                      </span>
+                    )}
+                    <Heart className="absolute right-1.5 top-1.5 h-3 w-3 text-white/80" />
+                  </div>
+                  <div className="space-y-1 p-2">
+                    <span className="block h-1.5 w-3/4 rounded-full bg-slate-200" />
+                    <div className="flex items-center justify-between pt-0.5">
+                      <span className="h-1.5 w-6 rounded-full bg-slate-300" />
+                      <TrendingUp className="h-2.5 w-2.5 text-emerald-500" />
+                    </div>
+                    <div className="flex items-center gap-1 pt-0.5">
+                      <BadgeCheck className="h-2.5 w-2.5 text-brand-400" />
+                      <ShieldCheck className="h-2.5 w-2.5 text-slate-300" />
                     </div>
                   </div>
-                ))}
+                </div>
+              ))}
+
+              <div className="animate-cursor pointer-events-none absolute z-10 -translate-x-1 -translate-y-1">
+                <MousePointer2
+                  className="h-4 w-4 fill-slate-900 text-white drop-shadow"
+                  strokeWidth={1.5}
+                />
               </div>
             </div>
           </div>

@@ -60,6 +60,119 @@ body {
   box-shadow: 0 16px 32px -12px rgba(15, 23, 42, 0.16);
 }
 
+@keyframes float-laptop {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+.animate-float-laptop {
+  animation: float-laptop 5s ease-in-out infinite;
+}
+
+@keyframes card-enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes cursor-move {
+  0%,
+  18% {
+    left: 27%;
+    top: 34%;
+  }
+  28%,
+  43% {
+    left: 76%;
+    top: 34%;
+  }
+  53%,
+  68% {
+    left: 27%;
+    top: 78%;
+  }
+  78%,
+  93% {
+    left: 76%;
+    top: 78%;
+  }
+  100% {
+    left: 27%;
+    top: 34%;
+  }
+}
+.animate-cursor {
+  animation: cursor-move 10s ease-in-out infinite;
+}
+
+@keyframes card-spotlight {
+  0%,
+  4%,
+  20%,
+  100% {
+    box-shadow: none;
+    transform: scale(1);
+  }
+  8%,
+  14% {
+    box-shadow: 0 0 0 2px var(--color-brand-500);
+    transform: scale(1.035);
+  }
+}
+
+/* Each mini marketplace card gets its own fade-in (once) plus a
+   spotlight pulse (looping) offset so the highlight visits cards in
+   sequence, synced with .animate-cursor's path. */
+.animate-hero-card-1,
+.animate-hero-card-2,
+.animate-hero-card-3,
+.animate-hero-card-4 {
+  opacity: 0;
+  animation-name: card-enter, card-spotlight;
+  animation-duration: 0.5s, 10s;
+  animation-timing-function: ease-out, ease-in-out;
+  animation-iteration-count: 1, infinite;
+  animation-fill-mode: forwards, none;
+}
+.animate-hero-card-1 {
+  animation-delay: 0s, 0s;
+}
+.animate-hero-card-2 {
+  animation-delay: 0.1s, 2.5s;
+}
+.animate-hero-card-3 {
+  animation-delay: 0.2s, 5s;
+}
+.animate-hero-card-4 {
+  animation-delay: 0.3s, 7.5s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float-laptop,
+  .animate-cursor,
+  .animate-hero-card-1,
+  .animate-hero-card-2,
+  .animate-hero-card-3,
+  .animate-hero-card-4 {
+    animation: none;
+  }
+  .animate-hero-card-1,
+  .animate-hero-card-2,
+  .animate-hero-card-3,
+  .animate-hero-card-4 {
+    opacity: 1;
+  }
+}
+
 .range-thumb {
   height: 20px;
 }
