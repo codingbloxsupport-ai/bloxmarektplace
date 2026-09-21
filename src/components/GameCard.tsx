@@ -13,10 +13,10 @@ export function GameCard({ game }: { game: GameListing }) {
   return (
     <Link
       href={`/game/${game.slug}`}
-      className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-shadow hover:shadow-md"
+      className="hover-lift group flex flex-col overflow-hidden rounded-2xl border border-border bg-white shadow-[0_2px_8px_-4px_rgba(11,18,32,0.06)]"
     >
       <div
-        className="relative flex h-40 items-center justify-center overflow-hidden"
+        className="card-media relative flex h-40 items-center justify-center overflow-hidden"
         style={{
           background: `linear-gradient(135deg, ${game.gradient[0]}, ${game.gradient[1]})`,
         }}
@@ -33,7 +33,7 @@ export function GameCard({ game }: { game: GameListing }) {
             e.preventDefault();
             setSaved((v) => !v);
           }}
-          className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-full bg-white/90 text-slate-600 shadow-sm transition-colors hover:bg-white"
+          className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-full bg-white/90 text-muted shadow-sm transition-colors hover:bg-white"
         >
           <Heart
             className={cn("h-4 w-4", saved && "fill-rose-500 text-rose-500")}
@@ -46,12 +46,12 @@ export function GameCard({ game }: { game: GameListing }) {
 
       <div className="flex flex-1 flex-col gap-3 p-4">
         <div>
-          <h3 className="font-semibold text-slate-900">{game.title}</h3>
+          <h3 className="font-semibold text-ink">{game.title}</h3>
           <div className="mt-1.5 flex flex-wrap gap-1.5">
             {game.tags.map((tag) => (
               <span
                 key={tag}
-                className="rounded-md bg-slate-100 px-2 py-0.5 text-xs font-medium text-slate-600"
+                className="rounded-md bg-surface-alt px-2 py-0.5 text-xs font-medium text-muted"
               >
                 {tag}
               </span>
@@ -60,16 +60,16 @@ export function GameCard({ game }: { game: GameListing }) {
         </div>
 
         <div className="flex items-center justify-between">
-          <span className="text-lg font-bold text-slate-900">
+          <span className="text-lg font-bold text-ink">
             {formatPrice(game.price)}
           </span>
-          <span className="flex items-center gap-1 text-sm font-medium text-emerald-600">
+          <span className="text-revenue flex items-center gap-1 text-sm font-medium">
             <TrendingUp className="h-3.5 w-3.5" />
             {formatCompact(game.monthlyRevenue)}/mo
           </span>
         </div>
 
-        <div className="mt-auto flex flex-wrap items-center gap-x-3 gap-y-1 border-t border-slate-100 pt-3 text-xs text-slate-500">
+        <div className="mt-auto flex flex-wrap items-center gap-x-3 gap-y-1 border-t border-border pt-3 text-xs text-muted">
           {game.verifiedSeller && (
             <span className="flex items-center gap-1 text-brand-600">
               <BadgeCheck className="h-3.5 w-3.5" />

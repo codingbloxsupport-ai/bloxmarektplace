@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
-import { Bell, ChevronDown, Menu, Search, X } from "lucide-react";
+import { useState } from "react";
+import { ChevronDown, Menu, Search, X } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/cn";
@@ -11,42 +11,20 @@ import { cn } from "@/lib/cn";
 export function Header() {
   const pathname = usePathname();
   const [resourcesOpen, setResourcesOpen] = useState(false);
-  const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [lastPathname, setLastPathname] = useState(pathname);
-  const resourcesRef = useRef<HTMLDivElement>(null);
-  const userMenuRef = useRef<HTMLDivElement>(null);
 
   if (pathname !== lastPathname) {
     setLastPathname(pathname);
     setMobileMenuOpen(false);
   }
 
-  useEffect(() => {
-    function handleClick(event: MouseEvent) {
-      if (
-        resourcesRef.current &&
-        !resourcesRef.current.contains(event.target as Node)
-      ) {
-        setResourcesOpen(false);
-      }
-      if (
-        userMenuRef.current &&
-        !userMenuRef.current.contains(event.target as Node)
-      ) {
-        setUserMenuOpen(false);
-      }
-    }
-    document.addEventListener("mousedown", handleClick);
-    return () => document.removeEventListener("mousedown", handleClick);
-  }, []);
-
   return (
-    <header className="sticky top-0 z-30 border-b border-slate-200 bg-white/90 backdrop-blur">
-      <div className="mx-auto flex h-16 max-w-[1600px] items-center gap-6 px-4 sm:px-6 lg:px-8">
+    <header className="sticky top-0 z-30 h-[70px] border-b border-border bg-white/80 backdrop-blur-md">
+      <div className="mx-auto flex h-full max-w-[1400px] items-center gap-6 px-6 lg:px-10">
         <Logo />
 
-        <nav className="hidden items-center gap-1 md:flex">
+        <nav className="hidden items-center gap-1 lg:flex">
           {siteConfig.nav.map((item) => {
             const active = item.href === pathname;
             return (
@@ -55,9 +33,7 @@ export function Header() {
                 href={item.href}
                 className={cn(
                   "rounded-lg px-3 py-2 text-sm font-medium transition-colors",
-                  active
-                    ? "text-brand-600"
-                    : "text-slate-600 hover:text-slate-900"
+                  active ? "text-brand-600" : "text-muted hover:text-ink"
                 )}
               >
                 {item.label}
@@ -65,23 +41,25 @@ export function Header() {
             );
           })}
 
-          <div className="relative" ref={resourcesRef}>
+          <div
+            className="group relative"
+            onMouseEnter={() => setResourcesOpen(true)}
+            onMouseLeave={() => setResourcesOpen(false)}
+          >
             <button
               type="button"
-              onClick={() => setResourcesOpen((v) => !v)}
-              className="flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition-colors hover:text-slate-900"
+              className="flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium text-muted transition-colors hover:text-ink"
             >
               Resources
               <ChevronDown className="h-4 w-4" />
             </button>
             {resourcesOpen && (
-              <div className="absolute left-0 top-full mt-2 w-56 rounded-xl border border-slate-200 bg-white p-1.5 shadow-lg">
+              <div className="absolute left-0 top-full w-56 rounded-xl border border-border bg-white p-1.5 shadow-lg">
                 {siteConfig.resourcesNav.map((item) => (
                   <Link
                     key={item.href}
                     href={item.href}
-                    onClick={() => setResourcesOpen(false)}
-                    className="block rounded-lg px-3 py-2 text-sm text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+                    className="block rounded-lg px-3 py-2 text-sm text-muted hover:bg-soft-blue hover:text-ink"
                   >
                     {item.label}
                   </Link>
@@ -91,70 +69,28 @@ export function Header() {
           </div>
         </nav>
 
-        <div className="ml-auto flex flex-1 items-center justify-end gap-3">
-          <div className="relative hidden max-w-md flex-1 sm:block">
-            <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
-            <input
-              type="text"
-              placeholder="Search games, genres, or keywords..."
-              className="w-full rounded-lg border border-slate-200 bg-slate-50 py-2 pl-9 pr-14 text-sm text-slate-700 placeholder:text-slate-400 focus:border-brand-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-100"
-            />
-            <kbd className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 rounded border border-slate-200 bg-white px-1.5 py-0.5 text-[11px] font-medium text-slate-400">
-              ⌘K
-            </kbd>
-          </div>
+        <div className="relative hidden max-w-sm flex-1 lg:block">
+          <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted" />
+          <input
+            type="text"
+            placeholder="Search games, genres, or keywords..."
+            className="w-full rounded-lg border border-border bg-surface-alt py-2 pl-9 pr-14 text-sm text-ink placeholder:text-muted focus:border-brand-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-100"
+          />
+          <kbd className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 rounded border border-border bg-white px-1.5 py-0.5 text-[11px] font-medium text-muted">
+            ⌘K
+          </kbd>
+        </div>
 
-          <button
-            type="button"
-            aria-label="Notifications"
-            className="relative flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-slate-500 hover:bg-slate-100 hover:text-slate-700"
+        <div className="ml-auto flex shrink-0 items-center gap-2">
+          <Link
+            href="/login"
+            className="hidden rounded-lg px-4 py-2 text-sm font-semibold text-ink hover:bg-surface-alt sm:inline-block"
           >
-            <Bell className="h-5 w-5" />
-            <span className="absolute right-2 top-2 h-1.5 w-1.5 rounded-full bg-brand-500" />
-          </button>
-
-          <div className="relative" ref={userMenuRef}>
-            <button
-              type="button"
-              onClick={() => setUserMenuOpen((v) => !v)}
-              className="flex items-center gap-2 rounded-full py-1 pl-1 pr-2 hover:bg-slate-100"
-            >
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-brand-500 to-brand-700 text-xs font-semibold text-white">
-                A
-              </span>
-              <span className="hidden text-sm font-medium text-slate-700 sm:inline">
-                Alex
-              </span>
-              <ChevronDown className="hidden h-4 w-4 text-slate-400 sm:inline" />
-            </button>
-            {userMenuOpen && (
-              <div className="absolute right-0 top-full mt-2 w-52 rounded-xl border border-slate-200 bg-white p-1.5 shadow-lg">
-                <Link
-                  href="/watchlist"
-                  className="block rounded-lg px-3 py-2 text-sm text-slate-600 hover:bg-slate-50 hover:text-slate-900"
-                >
-                  Watchlist
-                </Link>
-                <Link
-                  href="/sell"
-                  className="block rounded-lg px-3 py-2 text-sm text-slate-600 hover:bg-slate-50 hover:text-slate-900"
-                >
-                  My Listings
-                </Link>
-                <div className="my-1 h-px bg-slate-100" />
-                <Link
-                  href="/login"
-                  className="block rounded-lg px-3 py-2 text-sm text-slate-600 hover:bg-slate-50 hover:text-slate-900"
-                >
-                  Log out
-                </Link>
-              </div>
-            )}
-          </div>
-
+            Sign In
+          </Link>
           <Link
             href="/signup"
-            className="hidden shrink-0 rounded-lg bg-brand-500 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-brand-600 lg:inline-block"
+            className="hover-lift hidden rounded-lg bg-brand-500 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-brand-600 sm:inline-block"
           >
             Get Started
           </Link>
@@ -163,7 +99,7 @@ export function Header() {
             type="button"
             aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
             onClick={() => setMobileMenuOpen((v) => !v)}
-            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-slate-500 hover:bg-slate-100 hover:text-slate-700 md:hidden"
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-muted hover:bg-surface-alt hover:text-ink lg:hidden"
           >
             {mobileMenuOpen ? (
               <X className="h-5 w-5" />
@@ -175,13 +111,13 @@ export function Header() {
       </div>
 
       {mobileMenuOpen && (
-        <div className="border-t border-slate-200 bg-white px-4 py-3 md:hidden">
-          <div className="relative mb-3 sm:hidden">
-            <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+        <div className="border-t border-border bg-white px-4 py-3 lg:hidden">
+          <div className="relative mb-3">
+            <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted" />
             <input
               type="text"
               placeholder="Search games, genres, or keywords..."
-              className="w-full rounded-lg border border-slate-200 bg-slate-50 py-2 pl-9 pr-3 text-sm text-slate-700 placeholder:text-slate-400 focus:border-brand-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-100"
+              className="w-full rounded-lg border border-border bg-surface-alt py-2 pl-9 pr-3 text-sm text-ink placeholder:text-muted focus:border-brand-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-100"
             />
           </div>
           <nav className="flex flex-col">
@@ -193,27 +129,38 @@ export function Header() {
                   href={item.href}
                   className={cn(
                     "rounded-lg px-2 py-2.5 text-sm font-medium",
-                    active
-                      ? "text-brand-600"
-                      : "text-slate-600 hover:text-slate-900"
+                    active ? "text-brand-600" : "text-muted hover:text-ink"
                   )}
                 >
                   {item.label}
                 </Link>
               );
             })}
-            <p className="mt-2 px-2 text-xs font-semibold uppercase tracking-wide text-slate-400">
+            <p className="mt-2 px-2 text-xs font-semibold uppercase tracking-wide text-muted">
               Resources
             </p>
             {siteConfig.resourcesNav.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="rounded-lg px-2 py-2.5 text-sm font-medium text-slate-600 hover:text-slate-900"
+                className="rounded-lg px-2 py-2.5 text-sm font-medium text-muted hover:text-ink"
               >
                 {item.label}
               </Link>
             ))}
+            <div className="my-2 h-px bg-border" />
+            <Link
+              href="/login"
+              className="rounded-lg px-2 py-2.5 text-sm font-semibold text-ink"
+            >
+              Sign In
+            </Link>
+            <Link
+              href="/signup"
+              className="mt-1 rounded-lg bg-brand-500 px-2 py-2.5 text-center text-sm font-semibold text-white"
+            >
+              Get Started
+            </Link>
           </nav>
         </div>
       )}

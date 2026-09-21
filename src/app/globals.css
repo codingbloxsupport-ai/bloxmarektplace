@@ -1,17 +1,25 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f6f8fb;
-  --foreground: #0f172a;
+  --background: #ffffff;
+  --foreground: #0b1220;
 
-  --color-brand-50: #eef4ff;
-  --color-brand-100: #dce8ff;
-  --color-brand-500: #2f6fed;
-  --color-brand-600: #2358d6;
-  --color-brand-700: #1c46ab;
+  --color-brand-50: #eff6ff;
+  --color-brand-100: #dbeafe;
+  --color-brand-500: #2563eb;
+  --color-brand-600: #1d4ed8;
+  --color-brand-700: #1e40af;
 
   --color-surface: #ffffff;
-  --color-border: #e2e8f0;
+  --color-surface-alt: #f7faff;
+  --color-soft-blue: #eff6ff;
+  --color-border: #e6ebf2;
+
+  --color-ink: #0b1220;
+  --color-muted: #64748b;
+
+  --color-revenue: #10b981;
+  --color-rating: #f59e0b;
 }
 
 @theme inline {
@@ -27,7 +35,14 @@
   --color-brand-700: var(--color-brand-700);
 
   --color-surface: var(--color-surface);
+  --color-surface-alt: var(--color-surface-alt);
+  --color-soft-blue: var(--color-soft-blue);
   --color-border: var(--color-border);
+
+  --color-ink: var(--color-ink);
+  --color-muted: var(--color-muted);
+  --color-revenue: var(--color-revenue);
+  --color-rating: var(--color-rating);
 }
 
 body {
@@ -46,18 +61,18 @@ body {
 }
 
 .bg-dot-grid {
-  background-image: radial-gradient(circle, rgba(47, 111, 237, 0.16) 1px, transparent 1px);
+  background-image: radial-gradient(circle, rgba(37, 99, 235, 0.14) 1px, transparent 1px);
   background-size: 22px 22px;
 }
 
 .hover-lift {
   transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
+    transform 0.22s ease,
+    box-shadow 0.22s ease;
 }
 .hover-lift:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 16px 32px -12px rgba(15, 23, 42, 0.16);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 36px -14px rgba(11, 18, 32, 0.18);
 }
 
 @keyframes float-laptop {
@@ -66,11 +81,11 @@ body {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-10px);
+    transform: translateY(-6px);
   }
 }
 .animate-float-laptop {
-  animation: float-laptop 5s ease-in-out infinite;
+  animation: float-laptop 6s ease-in-out infinite;
 }
 
 @keyframes card-enter {
@@ -199,6 +214,13 @@ body {
 }
 .range-thumb::-moz-range-track {
   background: transparent;
+}
+
+.card-media {
+  transition: transform 0.25s ease;
+}
+.group:hover .card-media {
+  transform: scale(1.02);
 }
 
 @layer components {

@@ -8,7 +8,7 @@ export function Logo() {
       <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-500 text-white">
         <Boxes className="h-5 w-5" strokeWidth={2.25} />
       </span>
-      <span className="text-lg font-bold tracking-tight text-slate-900">
+      <span className="text-lg font-bold tracking-tight text-ink">
         {siteConfig.name}
       </span>
     </Link>
