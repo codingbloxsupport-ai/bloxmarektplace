@@ -36,7 +36,7 @@ export default async function GameDetailPage({
   return (
     <div className="mx-auto max-w-[1400px] px-4 py-8 sm:px-6 lg:px-8">
       <nav className="mb-6 text-sm text-slate-400">
-        <Link href="/" className="hover:text-slate-600">
+        <Link href="/browse" className="hover:text-slate-600">
           Marketplace
         </Link>
         <span className="mx-2">/</span>

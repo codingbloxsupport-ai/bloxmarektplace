@@ -6,7 +6,7 @@ const columns = [
   {
     title: "Marketplace",
     links: [
-      { label: "Browse Games", href: "/" },
+      { label: "Browse Games", href: "/browse" },
       { label: "Sell Your Game", href: "/sell" },
       { label: "How It Works", href: "/how-it-works" },
     ],

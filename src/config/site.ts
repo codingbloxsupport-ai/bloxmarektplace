@@ -6,7 +6,7 @@ export const siteConfig = {
   description:
     "Discover, buy, and sell established Roblox games and experiences. Verified sellers, escrow-protected transactions, full ownership transfer.",
   nav: [
-    { label: "Browse", href: "/" },
+    { label: "Browse", href: "/browse" },
     { label: "Sell Your Game", href: "/sell" },
     { label: "How It Works", href: "/how-it-works" },
   ],
