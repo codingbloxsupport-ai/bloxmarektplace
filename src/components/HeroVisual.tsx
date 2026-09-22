@@ -1,4 +1,5 @@
 import { BadgeCheck, Heart, Lock, ShieldCheck } from "lucide-react";
+import Image from "next/image";
 import { SafeImage } from "@/components/SafeImage";
 import { siteConfig } from "@/config/site";
 
@@ -65,11 +66,19 @@ export function HeroVisual() {
                 </span>
               </div>
 
-              <div className="flex items-center justify-between border-b border-border px-4 py-2.5">
+              <div className="flex items-center justify-between border-b border-border px-4 py-3">
                 <div className="flex items-center gap-1.5">
-                  <span className="h-4 w-4 rounded-md bg-brand-500" />
-                  <span className="text-[11px] font-bold text-ink">
-                    Marketplace
+                  <span className="relative h-7 w-7 shrink-0">
+                    <Image
+                      src="/logo-icon.webp"
+                      alt=""
+                      fill
+                      className="object-contain"
+                      sizes="28px"
+                    />
+                  </span>
+                  <span className="text-xs font-bold text-ink">
+                    {siteConfig.name}
                   </span>
                 </div>
                 <div className="flex gap-1.5">
