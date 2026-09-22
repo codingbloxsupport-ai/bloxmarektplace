@@ -4,10 +4,34 @@ import { SafeImage } from "@/components/SafeImage";
 import { siteConfig } from "@/config/site";
 
 const miniCards = [
-  { image: "/games/tycoon.webp", gradient: ["#4ade80", "#15803d"], featured: true },
-  { image: "/games/anime.webp", gradient: ["#60a5fa", "#1e3a8a"], featured: false },
-  { image: "/games/pet-world.webp", gradient: ["#fb923c", "#9a3412"], featured: false },
-  { image: "/games/city-life.webp", gradient: ["#f472b6", "#9d174d"], featured: false },
+  {
+    image: "/games/tycoon.webp",
+    gradient: ["#4ade80", "#15803d"],
+    featured: true,
+    title: "Tycoon Empire",
+    price: "$2,400",
+  },
+  {
+    image: "/games/anime.webp",
+    gradient: ["#60a5fa", "#1e3a8a"],
+    featured: false,
+    title: "Anime Legends",
+    price: "$1,850",
+  },
+  {
+    image: "/games/pet-world.webp",
+    gradient: ["#fb923c", "#9a3412"],
+    featured: false,
+    title: "Pet World RP",
+    price: "$980",
+  },
+  {
+    image: "/games/city-life.webp",
+    gradient: ["#f472b6", "#9d174d"],
+    featured: false,
+    title: "City Life",
+    price: "$3,200",
+  },
 ];
 
 export function HeroVisual() {
@@ -121,14 +145,17 @@ export function HeroVisual() {
                       <Heart className="absolute right-1.5 top-1.5 z-10 h-3 w-3 text-white drop-shadow" />
                     </div>
                     <div className="space-y-1 p-2">
-                      <span className="block h-1.5 w-3/4 rounded-full bg-slate-200" />
+                      <span className="block truncate text-[9px] font-semibold text-ink">
+                        {card.title}
+                      </span>
                       <div className="flex items-center justify-between pt-0.5">
-                        <span className="h-1.5 w-6 rounded-full bg-slate-300" />
-                        <span className="h-1.5 w-4 rounded-full bg-revenue/40" />
-                      </div>
-                      <div className="flex items-center gap-1 pt-0.5">
-                        <BadgeCheck className="h-2.5 w-2.5 text-brand-400" />
-                        <ShieldCheck className="h-2.5 w-2.5 text-slate-300" />
+                        <span className="text-[9px] font-bold text-revenue">
+                          {card.price}
+                        </span>
+                        <div className="flex items-center gap-1">
+                          <BadgeCheck className="h-2.5 w-2.5 text-brand-400" />
+                          <ShieldCheck className="h-2.5 w-2.5 text-slate-300" />
+                        </div>
                       </div>
                     </div>
                   </div>
