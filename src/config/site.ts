@@ -1,6 +1,7 @@
 export const siteConfig = {
   name: "BloxMarket",
   shortName: "BM",
+  company: "CodingBlox",
   tagline: "Buy and sell Roblox games from verified creators.",
   description:
     "Discover, buy, and sell established Roblox games and experiences. Verified sellers, escrow-protected transactions, full ownership transfer.",

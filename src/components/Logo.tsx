@@ -15,8 +15,13 @@ export function Logo() {
           sizes="32px"
         />
       </span>
-      <span className="text-lg font-bold tracking-tight text-ink">
-        {siteConfig.name}
+      <span className="flex flex-col leading-none">
+        <span className="text-lg font-bold tracking-tight text-ink">
+          {siteConfig.name}
+        </span>
+        <span className="text-[10px] font-medium text-muted">
+          by {siteConfig.company}
+        </span>
       </span>
     </Link>
   );
