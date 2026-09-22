@@ -1,41 +1,35 @@
-import {
-  BadgeCheck,
-  Building2,
-  Gamepad2,
-  Heart,
-  PawPrint,
-  ShieldCheck,
-  Sparkles,
-} from "lucide-react";
+import { BadgeCheck, Heart, ShieldCheck } from "lucide-react";
 import Image from "next/image";
 import { SafeImage } from "@/components/SafeImage";
 import { siteConfig } from "@/config/site";
+import {
+  AnimeScene,
+  CityScene,
+  PetScene,
+  TycoonScene,
+} from "@/components/GameSceneArt";
 
 const miniCards = [
   {
-    icon: Gamepad2,
-    accent: "#0a5cf5",
+    Scene: TycoonScene,
     featured: true,
     title: "Tycoon Empire",
     price: "$2,400",
   },
   {
-    icon: Sparkles,
-    accent: "#17c7fb",
+    Scene: AnimeScene,
     featured: false,
     title: "Anime Legends",
     price: "$1,850",
   },
   {
-    icon: PawPrint,
-    accent: "#10b981",
+    Scene: PetScene,
     featured: false,
     title: "Pet World RP",
     price: "$980",
   },
   {
-    icon: Building2,
-    accent: "#f59e0b",
+    Scene: CityScene,
     featured: false,
     title: "City Life",
     price: "$3,200",
@@ -108,29 +102,20 @@ export function HeroVisual() {
 
               <div className="grid grid-cols-2 gap-3 p-4">
                 {miniCards.map((card, i) => {
-                  const Icon = card.icon;
+                  const Scene = card.Scene;
                   return (
                     <div
                       key={card.title}
                       className={`animate-hero-card-${i + 1} overflow-hidden rounded-xl border border-border bg-white`}
                     >
-                      <div
-                        className="relative flex h-14 items-center justify-center"
-                        style={{
-                          background: `linear-gradient(135deg, ${card.accent}1f, ${card.accent}08)`,
-                        }}
-                      >
-                        <Icon
-                          className="h-5 w-5"
-                          style={{ color: card.accent }}
-                          strokeWidth={2.25}
-                        />
+                      <div className="relative h-14 overflow-hidden">
+                        <Scene />
                         {card.featured && (
                           <span className="absolute left-1.5 top-1.5 z-10 rounded-full bg-white/95 px-1.5 py-0.5 text-[7px] font-bold text-brand-600 shadow-sm">
                             Featured
                           </span>
                         )}
-                        <Heart className="absolute right-1.5 top-1.5 z-10 h-3 w-3 text-slate-300" />
+                        <Heart className="absolute right-1.5 top-1.5 z-10 h-3 w-3 text-white drop-shadow" />
                       </div>
                       <div className="space-y-1 p-2">
                         <span className="block truncate text-[9px] font-semibold text-ink">
