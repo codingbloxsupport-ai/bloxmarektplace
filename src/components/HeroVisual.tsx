@@ -1,5 +1,6 @@
 import { BadgeCheck, Heart, Lock, ShieldCheck } from "lucide-react";
 import { SafeImage } from "@/components/SafeImage";
+import { siteConfig } from "@/config/site";
 
 const miniCards = [
   { image: "/games/tycoon.webp", gradient: ["#4ade80", "#15803d"], featured: true },
@@ -60,7 +61,7 @@ export function HeroVisual() {
                 <span className="h-2.5 w-2.5 rounded-full bg-amber-300" />
                 <span className="h-2.5 w-2.5 rounded-full bg-emerald-300" />
                 <span className="ml-3 flex h-5 flex-1 items-center rounded-full bg-surface-alt px-2.5 text-[10px] font-medium text-muted">
-                  yourmarketplace.com/browse
+                  {siteConfig.name.toLowerCase()}.com/browse
                 </span>
               </div>
 

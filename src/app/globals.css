@@ -6,9 +6,10 @@
 
   --color-brand-50: #eff6ff;
   --color-brand-100: #dbeafe;
-  --color-brand-500: #2563eb;
-  --color-brand-600: #1d4ed8;
-  --color-brand-700: #1e40af;
+  --color-brand-300: #17c7fb;
+  --color-brand-500: #0a5cf5;
+  --color-brand-600: #0b3fc4;
+  --color-brand-700: #0a2472;
 
   --color-surface: #ffffff;
   --color-surface-alt: #f7faff;
@@ -30,6 +31,7 @@
 
   --color-brand-50: var(--color-brand-50);
   --color-brand-100: var(--color-brand-100);
+  --color-brand-300: var(--color-brand-300);
   --color-brand-500: var(--color-brand-500);
   --color-brand-600: var(--color-brand-600);
   --color-brand-700: var(--color-brand-700);

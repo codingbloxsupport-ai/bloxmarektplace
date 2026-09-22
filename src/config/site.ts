@@ -1,7 +1,6 @@
-// Brand name is not finalized yet — change it here and it updates everywhere.
 export const siteConfig = {
-  name: "YourMarketplace",
-  shortName: "YM",
+  name: "BloxMarket",
+  shortName: "BM",
   tagline: "Buy and sell Roblox games from verified creators.",
   description:
     "Discover, buy, and sell established Roblox games and experiences. Verified sellers, escrow-protected transactions, full ownership transfer.",
