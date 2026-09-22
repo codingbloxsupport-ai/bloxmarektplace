@@ -26,9 +26,7 @@ export function Footer() {
         <div className="flex flex-col gap-8 sm:flex-row sm:items-center sm:justify-between">
           <div className="max-w-xs">
             <Logo />
-            <p className="mt-3 text-sm text-muted">
-              A safer, brighter future for Roblox creators.
-            </p>
+            <p className="mt-3 text-sm text-muted">{siteConfig.tagline}</p>
           </div>
 
           <nav className="flex flex-wrap gap-x-6 gap-y-2">

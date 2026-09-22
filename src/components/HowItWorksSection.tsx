@@ -41,19 +41,11 @@ export function HowItWorksSection() {
             {steps.map((step, i) => (
               <div
                 key={step.title}
-                className="flex flex-1 items-start gap-4 sm:flex-col sm:items-start"
+                className="flex flex-1 gap-3 border-t-2 border-brand-500 pt-3 sm:flex-col"
               >
-                <div className="flex items-center gap-3 sm:w-full">
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-500 text-sm font-bold text-white">
-                    {i + 1}
-                  </span>
-                  {i < steps.length - 1 && (
-                    <span className="hidden h-px flex-1 bg-border sm:block" />
-                  )}
-                  {i < steps.length - 1 && (
-                    <ArrowRight className="hidden h-4 w-4 shrink-0 text-muted sm:block" />
-                  )}
-                </div>
+                <span className="text-xs font-bold text-brand-600">
+                  0{i + 1}
+                </span>
                 <div>
                   <p className="text-sm font-semibold text-ink">
                     {step.title}

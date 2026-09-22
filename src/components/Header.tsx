@@ -116,7 +116,7 @@ export function Header() {
           </Link>
           <Link
             href="/signup"
-            className="hover-lift hidden rounded-lg bg-brand-500 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-brand-600 sm:inline-block"
+            className="hidden rounded-lg bg-brand-500 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-brand-600 sm:inline-block"
           >
             Get Started
           </Link>

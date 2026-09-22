@@ -34,9 +34,7 @@ export function FeaturedGamesSection() {
         </div>
       ) : (
         <div className="mt-8 flex flex-col items-center rounded-2xl border border-dashed border-border bg-surface-alt px-6 py-16 text-center">
-          <span className="flex h-14 w-14 items-center justify-center rounded-full bg-white text-brand-500 shadow-sm">
-            <PackageSearch className="h-6 w-6" />
-          </span>
+          <PackageSearch className="h-8 w-8 text-brand-500" />
           <h3 className="mt-4 text-lg font-semibold text-ink">
             No listings yet
           </h3>
@@ -46,7 +44,7 @@ export function FeaturedGamesSection() {
           </p>
           <Link
             href="/sell"
-            className="hover-lift mt-6 rounded-xl bg-brand-500 px-5 py-2.5 text-sm font-semibold text-white hover:bg-brand-600"
+            className="mt-6 rounded-xl bg-brand-500 px-5 py-2.5 text-sm font-semibold text-white hover:bg-brand-600"
           >
             Sell Your Game
           </Link>

@@ -145,11 +145,9 @@ export function FilterSidebar() {
         </div>
       </div>
 
-      <div className="rounded-xl bg-brand-50 p-4">
+      <div className="rounded-xl border border-border p-4">
         <div className="flex items-start gap-3">
-          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-brand-600 shadow-sm">
-            <Headphones className="h-4.5 w-4.5" />
-          </span>
+          <Headphones className="mt-0.5 h-5 w-5 shrink-0 text-brand-600" />
           <div>
             <p className="text-sm font-semibold text-ink">
               Need help?

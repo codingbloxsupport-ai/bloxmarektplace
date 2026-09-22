@@ -36,19 +36,19 @@ export default function ResourcesPage() {
 
       <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
         <ResourceCard
-          icon={<BookOpen className="h-4 w-4" />}
+          icon={<BookOpen className="h-5 w-5" />}
           id="seller-guide"
           title="Seller Guide"
           body="Tips for pricing, presenting, and closing a sale quickly."
         />
         <ResourceCard
-          icon={<ShieldCheck className="h-4 w-4" />}
+          icon={<ShieldCheck className="h-5 w-5" />}
           id="buyer-protection"
           title="Buyer Protection"
           body="How escrow and dispute resolution keep your purchase safe."
         />
         <ResourceCard
-          icon={<Mail className="h-4 w-4" />}
+          icon={<Mail className="h-5 w-5" />}
           id="blog"
           title="Blog"
           body="Market trends, sale spotlights, and platform updates."
@@ -106,9 +106,7 @@ function ResourceCard({
       id={id}
       className="scroll-mt-24 rounded-2xl border border-border bg-white p-5"
     >
-      <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-50 text-brand-600">
-        {icon}
-      </span>
+      <div className="flex items-center gap-2 text-brand-600">{icon}</div>
       <p className="mt-3 text-sm font-semibold text-ink">{title}</p>
       <p className="mt-1 text-sm text-muted">{body}</p>
     </div>

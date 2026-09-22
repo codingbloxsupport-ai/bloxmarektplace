@@ -138,17 +138,17 @@ export default function SellPage() {
 
         <aside className="w-full shrink-0 space-y-4 lg:w-80">
           <InfoCard
-            icon={<ShieldCheck className="h-4 w-4" />}
+            icon={<ShieldCheck className="h-5 w-5" />}
             title="Escrow-protected payouts"
             body="Funds are held securely until ownership transfer is confirmed by both parties."
           />
           <InfoCard
-            icon={<Users className="h-4 w-4" />}
+            icon={<Users className="h-5 w-5" />}
             title="Vetted buyer network"
             body="Your listing reaches thousands of buyers actively looking for established games."
           />
           <InfoCard
-            icon={<TrendingUp className="h-4 w-4" />}
+            icon={<TrendingUp className="h-5 w-5" />}
             title="No listing fees"
             body="It's free to list. We only take a small commission when your game sells."
           />
@@ -191,9 +191,7 @@ function InfoCard({
 }) {
   return (
     <div className="rounded-2xl border border-border bg-white p-5">
-      <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-50 text-brand-600">
-        {icon}
-      </span>
+      <div className="flex items-center gap-2 text-brand-600">{icon}</div>
       <p className="mt-3 text-sm font-semibold text-ink">{title}</p>
       <p className="mt-1 text-sm text-muted">{body}</p>
     </div>

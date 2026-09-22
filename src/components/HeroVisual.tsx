@@ -3,7 +3,6 @@ import {
   Building2,
   Gamepad2,
   Heart,
-  Lock,
   PawPrint,
   ShieldCheck,
   Sparkles,
@@ -46,26 +45,6 @@ const miniCards = [
 export function HeroVisual() {
   return (
     <div className="relative mx-auto w-full max-w-2xl lg:mx-0 lg:min-h-[520px] lg:pr-20">
-      {/* Decorative floating cubes — behind everything, purely atmospheric */}
-      <div className="absolute -right-4 -top-10 z-0 hidden h-16 w-16 sm:block">
-        <SafeImage
-          src="/hero/floating-cube-1.webp"
-          alt=""
-          fill
-          className="object-contain drop-shadow-lg"
-          sizes="64px"
-        />
-      </div>
-      <div className="absolute -bottom-6 left-0 z-0 hidden h-12 w-12 sm:block">
-        <SafeImage
-          src="/hero/floating-cube-2.webp"
-          alt=""
-          fill
-          className="object-contain drop-shadow-lg"
-          sizes="48px"
-        />
-      </div>
-
       {/* Roblox character — recedes behind the laptop as atmosphere, not a
           second focal point: lower z-index, slightly muted, no overlap
           onto the laptop's corner. */}
@@ -178,15 +157,6 @@ export function HeroVisual() {
           <div className="relative mx-auto h-4 w-[104%] -translate-x-[2%] rounded-b-2xl bg-gradient-to-b from-slate-300 to-slate-400 shadow-md" />
           <div className="mx-auto h-1.5 w-1/3 rounded-b-lg bg-slate-400" />
         </div>
-      </div>
-
-      <div className="absolute -left-8 top-2 z-30 hidden items-center gap-2 rounded-xl border border-border bg-white px-3 py-2 shadow-xl sm:flex">
-        <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-emerald-50 text-revenue">
-          <Lock className="h-3.5 w-3.5" />
-        </span>
-        <span className="whitespace-nowrap text-xs font-semibold text-ink">
-          Escrow Protected
-        </span>
       </div>
     </div>
   );
