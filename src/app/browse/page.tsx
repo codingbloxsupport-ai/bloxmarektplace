@@ -5,7 +5,17 @@ import { FilterSidebar } from "@/components/FilterSidebar";
 import { GameCard } from "@/components/GameCard";
 import { games } from "@/data/games";
 
-export default function BrowsePage() {
+export default async function BrowsePage({
+  searchParams,
+}: {
+  searchParams: Promise<{ q?: string }>;
+}) {
+  const { q } = await searchParams;
+  const query = q?.trim();
+  const results = query
+    ? games.filter((g) => g.title.toLowerCase().includes(query.toLowerCase()))
+    : games;
+
   return (
     <div className="mx-auto max-w-[1600px] px-4 py-8 sm:px-6 lg:px-8">
       <div className="flex flex-col gap-8 lg:flex-row">
@@ -15,7 +25,7 @@ export default function BrowsePage() {
           <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <h1 className="text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
-                Marketplace
+                {query ? `Results for "${query}"` : "Marketplace"}
               </h1>
               <p className="mt-1 text-muted">
                 Discover and buy incredible Roblox games from verified
@@ -24,7 +34,7 @@ export default function BrowsePage() {
             </div>
             <div className="text-right">
               <p className="text-sm font-semibold text-ink">
-                {games.length} listings live
+                {results.length} listings live
               </p>
               <p className="text-xs text-muted">
                 New listings appear here as sellers join.
@@ -37,12 +47,19 @@ export default function BrowsePage() {
           </div>
 
           <div className="mt-6">
-            {games.length > 0 ? (
+            {results.length > 0 ? (
               <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
-                {games.map((game) => (
+                {results.map((game) => (
                   <GameCard key={game.id} game={game} />
                 ))}
               </div>
+            ) : query ? (
+              <EmptyState
+                icon={<PackageSearch className="h-6 w-6" />}
+                title={`No results for "${query}"`}
+                body="Try a different search term, or browse all listings."
+                action={{ label: "Browse All Games", href: "/browse" }}
+              />
             ) : (
               <EmptyState
                 icon={<PackageSearch className="h-6 w-6" />}

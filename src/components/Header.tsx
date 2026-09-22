@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import { ChevronDown, Menu, Search, X } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { siteConfig } from "@/config/site";
@@ -10,13 +10,33 @@ import { cn } from "@/lib/cn";
 
 export function Header() {
   const pathname = usePathname();
+  const router = useRouter();
   const [resourcesOpen, setResourcesOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [lastPathname, setLastPathname] = useState(pathname);
+  const [query, setQuery] = useState("");
+  const searchInputRef = useRef<HTMLInputElement>(null);
 
   if (pathname !== lastPathname) {
     setLastPathname(pathname);
     setMobileMenuOpen(false);
+  }
+
+  useEffect(() => {
+    function handleKeyDown(e: KeyboardEvent) {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        searchInputRef.current?.focus();
+      }
+    }
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+  function handleSearchSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    router.push(query.trim() ? `/browse?q=${encodeURIComponent(query.trim())}` : "/browse");
+    searchInputRef.current?.blur();
   }
 
   return (
@@ -69,17 +89,23 @@ export function Header() {
           </div>
         </nav>
 
-        <div className="relative hidden max-w-sm flex-1 lg:block">
+        <form
+          onSubmit={handleSearchSubmit}
+          className="relative hidden max-w-sm flex-1 lg:block"
+        >
           <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted" />
           <input
+            ref={searchInputRef}
             type="text"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
             placeholder="Search games, genres, or keywords..."
             className="w-full rounded-lg border border-border bg-surface-alt py-2 pl-9 pr-14 text-sm text-ink placeholder:text-muted focus:border-brand-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-100"
           />
           <kbd className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 rounded border border-border bg-white px-1.5 py-0.5 text-[11px] font-medium text-muted">
             ⌘K
           </kbd>
-        </div>
+        </form>
 
         <div className="ml-auto flex shrink-0 items-center gap-2">
           <Link
@@ -112,14 +138,16 @@ export function Header() {
 
       {mobileMenuOpen && (
         <div className="border-t border-border bg-white px-4 py-3 lg:hidden">
-          <div className="relative mb-3">
+          <form onSubmit={handleSearchSubmit} className="relative mb-3">
             <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted" />
             <input
               type="text"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
               placeholder="Search games, genres, or keywords..."
               className="w-full rounded-lg border border-border bg-surface-alt py-2 pl-9 pr-3 text-sm text-ink placeholder:text-muted focus:border-brand-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-100"
             />
-          </div>
+          </form>
           <nav className="flex flex-col">
             {siteConfig.nav.map((item) => {
               const active = item.href === pathname;
