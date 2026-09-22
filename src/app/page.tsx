@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { ArrowRight, Check, Sparkles } from "lucide-react";
-import { siteConfig } from "@/config/site";
 import { HeroVisual } from "@/components/HeroVisual";
 import { TrustBar } from "@/components/TrustBar";
 import { FeaturedGamesSection } from "@/components/FeaturedGamesSection";
@@ -22,7 +21,7 @@ export default function LandingPage() {
           className="absolute inset-0 hidden bg-cover bg-right bg-no-repeat lg:block"
           style={{
             backgroundImage:
-              "linear-gradient(to right, white 0%, rgba(255,255,255,.95) 25%, rgba(255,255,255,.35) 65%, rgba(255,255,255,0) 100%), url('/hero/roblox-city-background.webp')",
+              "linear-gradient(to right, white 0%, rgba(255,255,255,.95) 20%, rgba(255,255,255,.68) 42%, rgba(255,255,255,.4) 65%, rgba(255,255,255,.16) 85%, rgba(255,255,255,.16) 100%), url('/hero/roblox-city-background.webp')",
           }}
         />
         <div className="bg-dot-grid absolute inset-0 opacity-40 lg:hidden" />
@@ -33,12 +32,14 @@ export default function LandingPage() {
               <Sparkles className="h-3.5 w-3.5" />
               The Roblox Game Marketplace
             </span>
-            <h1 className="mt-6 text-[clamp(2.5rem,6vw,4.75rem)] font-extrabold leading-[0.98] tracking-tight text-balance text-ink">
-              Turn your Roblox vision into{" "}
-              <span className="text-brand-500">what&apos;s next.</span>
+            <h1 className="mt-6 text-[clamp(2.5rem,6vw,4.75rem)] font-extrabold leading-[0.98] tracking-tight text-ink">
+              <span className="block">Turn your Roblox</span>
+              <span className="block">vision into</span>
+              <span className="block text-brand-500">what&apos;s next.</span>
             </h1>
-            <p className="mx-auto mt-6 max-w-xl text-lg text-muted lg:mx-0">
-              {siteConfig.description}
+            <p className="mx-auto mt-6 max-w-xl text-lg text-slate-700 lg:mx-0">
+              Verified sellers. Escrow-protected deals. Full ownership,
+              guaranteed.
             </p>
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row lg:justify-start">
               <Link

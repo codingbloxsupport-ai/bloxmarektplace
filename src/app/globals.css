@@ -99,81 +99,30 @@ body {
   }
 }
 
-@keyframes cursor-move {
-  0%,
-  18% {
-    left: 27%;
-    top: 34%;
-  }
-  28%,
-  43% {
-    left: 76%;
-    top: 34%;
-  }
-  53%,
-  68% {
-    left: 27%;
-    top: 78%;
-  }
-  78%,
-  93% {
-    left: 76%;
-    top: 78%;
-  }
-  100% {
-    left: 27%;
-    top: 34%;
-  }
-}
-.animate-cursor {
-  animation: cursor-move 10s ease-in-out infinite;
-}
-
-@keyframes card-spotlight {
-  0%,
-  4%,
-  20%,
-  100% {
-    box-shadow: none;
-    transform: scale(1);
-  }
-  8%,
-  14% {
-    box-shadow: 0 0 0 2px var(--color-brand-500);
-    transform: scale(1.035);
-  }
-}
-
-/* Each mini marketplace card gets its own fade-in (once) plus a
-   spotlight pulse (looping) offset so the highlight visits cards in
-   sequence, synced with .animate-cursor's path. */
+/* Each mini marketplace card fades in once, staggered slightly —
+   no looping motion once settled, so it doesn't compete with reading. */
 .animate-hero-card-1,
 .animate-hero-card-2,
 .animate-hero-card-3,
 .animate-hero-card-4 {
   opacity: 0;
-  animation-name: card-enter, card-spotlight;
-  animation-duration: 0.5s, 10s;
-  animation-timing-function: ease-out, ease-in-out;
-  animation-iteration-count: 1, infinite;
-  animation-fill-mode: forwards, none;
+  animation: card-enter 0.5s ease-out forwards;
 }
 .animate-hero-card-1 {
-  animation-delay: 0s, 0s;
+  animation-delay: 0s;
 }
 .animate-hero-card-2 {
-  animation-delay: 0.1s, 2.5s;
+  animation-delay: 0.1s;
 }
 .animate-hero-card-3 {
-  animation-delay: 0.2s, 5s;
+  animation-delay: 0.2s;
 }
 .animate-hero-card-4 {
-  animation-delay: 0.3s, 7.5s;
+  animation-delay: 0.3s;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .animate-float-laptop,
-  .animate-cursor,
   .animate-hero-card-1,
   .animate-hero-card-2,
   .animate-hero-card-3,

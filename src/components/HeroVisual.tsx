@@ -1,17 +1,17 @@
-import { BadgeCheck, Heart, Lock, MousePointer2, ShieldCheck, Sparkles } from "lucide-react";
+import { BadgeCheck, Heart, Lock, ShieldCheck } from "lucide-react";
 import { SafeImage } from "@/components/SafeImage";
 
 const miniCards = [
-  { image: "/games/tycoon.webp", featured: true },
-  { image: "/games/anime.webp", featured: false },
-  { image: "/games/pet-world.webp", featured: false },
-  { image: "/games/city-life.webp", featured: false },
+  { image: "/games/tycoon.webp", gradient: ["#4ade80", "#15803d"], featured: true },
+  { image: "/games/anime.webp", gradient: ["#60a5fa", "#1e3a8a"], featured: false },
+  { image: "/games/pet-world.webp", gradient: ["#fb923c", "#9a3412"], featured: false },
+  { image: "/games/city-life.webp", gradient: ["#f472b6", "#9d174d"], featured: false },
 ];
 
 export function HeroVisual() {
   return (
-    <div className="relative mx-auto w-full max-w-2xl lg:mx-0 lg:min-h-[560px] lg:pr-24">
-      {/* Decorative floating cubes — behind the laptop, above the background */}
+    <div className="relative mx-auto w-full max-w-2xl lg:mx-0 lg:min-h-[520px] lg:pr-20">
+      {/* Decorative floating cubes — behind everything, purely atmospheric */}
       <div className="absolute -right-4 -top-10 z-0 hidden h-16 w-16 sm:block">
         <SafeImage
           src="/hero/floating-cube-1.webp"
@@ -31,14 +31,16 @@ export function HeroVisual() {
         />
       </div>
 
-      {/* Roblox character — right side, overlapping the laptop, behind the floating cards */}
-      <div className="pointer-events-none absolute -right-2 bottom-0 z-20 hidden h-[340px] w-[230px] sm:block lg:-right-6 lg:h-[420px] lg:w-[290px]">
+      {/* Roblox character — recedes behind the laptop as atmosphere, not a
+          second focal point: lower z-index, slightly muted, no overlap
+          onto the laptop's corner. */}
+      <div className="pointer-events-none absolute -right-4 bottom-0 z-20 hidden h-[280px] w-[190px] opacity-90 saturate-[0.92] sm:block lg:-right-8 lg:h-[340px] lg:w-[230px]">
         <SafeImage
           src="/hero/roblox-character.webp"
-          alt="Roblox character waving"
+          alt=""
           fill
-          className="object-contain object-bottom drop-shadow-2xl"
-          sizes="290px"
+          className="object-contain object-bottom drop-shadow-xl"
+          sizes="230px"
         />
       </div>
 
@@ -82,13 +84,18 @@ export function HeroVisual() {
                 </div>
               </div>
 
-              <div className="relative grid grid-cols-2 gap-3 p-4">
+              <div className="grid grid-cols-2 gap-3 p-4">
                 {miniCards.map((card, i) => (
                   <div
                     key={card.image}
                     className={`animate-hero-card-${i + 1} overflow-hidden rounded-lg border border-border`}
                   >
-                    <div className="relative h-14 bg-surface-alt">
+                    <div
+                      className="relative h-14"
+                      style={{
+                        background: `linear-gradient(135deg, ${card.gradient[0]}, ${card.gradient[1]})`,
+                      }}
+                    >
                       <SafeImage
                         src={card.image}
                         alt=""
@@ -116,13 +123,6 @@ export function HeroVisual() {
                     </div>
                   </div>
                 ))}
-
-                <div className="animate-cursor pointer-events-none absolute z-10 -translate-x-1 -translate-y-1">
-                  <MousePointer2
-                    className="h-4 w-4 fill-slate-900 text-white drop-shadow"
-                    strokeWidth={1.5}
-                  />
-                </div>
               </div>
             </div>
           </div>
@@ -139,13 +139,6 @@ export function HeroVisual() {
         </span>
         <span className="whitespace-nowrap text-xs font-semibold text-ink">
           Escrow Protected
-        </span>
-      </div>
-
-      <div className="absolute -top-10 left-1/3 z-30 hidden w-44 -translate-x-1/2 -rotate-2 items-start gap-2 rounded-xl border border-border bg-white px-3 py-2.5 shadow-xl md:flex">
-        <Sparkles className="mt-0.5 h-3.5 w-3.5 shrink-0 text-brand-500" />
-        <span className="text-[11px] font-medium leading-snug text-ink">
-          Turn your passion into opportunity.
         </span>
       </div>
     </div>
