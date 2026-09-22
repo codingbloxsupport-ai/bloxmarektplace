@@ -1,33 +1,42 @@
-import { BadgeCheck, Heart, Lock, ShieldCheck } from "lucide-react";
+import {
+  BadgeCheck,
+  Building2,
+  Gamepad2,
+  Heart,
+  Lock,
+  PawPrint,
+  ShieldCheck,
+  Sparkles,
+} from "lucide-react";
 import Image from "next/image";
 import { SafeImage } from "@/components/SafeImage";
 import { siteConfig } from "@/config/site";
 
 const miniCards = [
   {
-    image: "/games/tycoon.webp",
-    gradient: ["#4ade80", "#15803d"],
+    icon: Gamepad2,
+    accent: "#0a5cf5",
     featured: true,
     title: "Tycoon Empire",
     price: "$2,400",
   },
   {
-    image: "/games/anime.webp",
-    gradient: ["#60a5fa", "#1e3a8a"],
+    icon: Sparkles,
+    accent: "#17c7fb",
     featured: false,
     title: "Anime Legends",
     price: "$1,850",
   },
   {
-    image: "/games/pet-world.webp",
-    gradient: ["#fb923c", "#9a3412"],
+    icon: PawPrint,
+    accent: "#10b981",
     featured: false,
     title: "Pet World RP",
     price: "$980",
   },
   {
-    image: "/games/city-life.webp",
-    gradient: ["#f472b6", "#9d174d"],
+    icon: Building2,
+    accent: "#f59e0b",
     featured: false,
     title: "City Life",
     price: "$3,200",
@@ -119,47 +128,48 @@ export function HeroVisual() {
               </div>
 
               <div className="grid grid-cols-2 gap-3 p-4">
-                {miniCards.map((card, i) => (
-                  <div
-                    key={card.image}
-                    className={`animate-hero-card-${i + 1} overflow-hidden rounded-lg border border-border`}
-                  >
+                {miniCards.map((card, i) => {
+                  const Icon = card.icon;
+                  return (
                     <div
-                      className="relative h-14"
-                      style={{
-                        background: `linear-gradient(135deg, ${card.gradient[0]}, ${card.gradient[1]})`,
-                      }}
+                      key={card.title}
+                      className={`animate-hero-card-${i + 1} overflow-hidden rounded-xl border border-border bg-white`}
                     >
-                      <SafeImage
-                        src={card.image}
-                        alt=""
-                        fill
-                        className="object-cover"
-                        sizes="140px"
-                      />
-                      {card.featured && (
-                        <span className="absolute left-1.5 top-1.5 z-10 rounded-full bg-white/90 px-1.5 py-0.5 text-[7px] font-bold text-brand-600">
-                          Featured
+                      <div
+                        className="relative flex h-14 items-center justify-center"
+                        style={{
+                          background: `linear-gradient(135deg, ${card.accent}1f, ${card.accent}08)`,
+                        }}
+                      >
+                        <Icon
+                          className="h-5 w-5"
+                          style={{ color: card.accent }}
+                          strokeWidth={2.25}
+                        />
+                        {card.featured && (
+                          <span className="absolute left-1.5 top-1.5 z-10 rounded-full bg-white/95 px-1.5 py-0.5 text-[7px] font-bold text-brand-600 shadow-sm">
+                            Featured
+                          </span>
+                        )}
+                        <Heart className="absolute right-1.5 top-1.5 z-10 h-3 w-3 text-slate-300" />
+                      </div>
+                      <div className="space-y-1 p-2">
+                        <span className="block truncate text-[9px] font-semibold text-ink">
+                          {card.title}
                         </span>
-                      )}
-                      <Heart className="absolute right-1.5 top-1.5 z-10 h-3 w-3 text-white drop-shadow" />
-                    </div>
-                    <div className="space-y-1 p-2">
-                      <span className="block truncate text-[9px] font-semibold text-ink">
-                        {card.title}
-                      </span>
-                      <div className="flex items-center justify-between pt-0.5">
-                        <span className="text-[9px] font-bold text-revenue">
-                          {card.price}
-                        </span>
-                        <div className="flex items-center gap-1">
-                          <BadgeCheck className="h-2.5 w-2.5 text-brand-400" />
-                          <ShieldCheck className="h-2.5 w-2.5 text-slate-300" />
+                        <div className="flex items-center justify-between pt-0.5">
+                          <span className="text-[9px] font-bold text-revenue">
+                            {card.price}
+                          </span>
+                          <div className="flex items-center gap-1">
+                            <BadgeCheck className="h-2.5 w-2.5 text-brand-400" />
+                            <ShieldCheck className="h-2.5 w-2.5 text-slate-300" />
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </div>
