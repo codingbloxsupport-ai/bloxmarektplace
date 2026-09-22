@@ -4,10 +4,10 @@ import { EmptyState } from "@/components/EmptyState";
 export default function WatchlistPage() {
   return (
     <div className="mx-auto max-w-[1400px] px-4 py-8 sm:px-6 lg:px-8">
-      <h1 className="text-3xl font-extrabold tracking-tight text-slate-900">
+      <h1 className="text-3xl font-extrabold tracking-tight text-ink">
         Watchlist
       </h1>
-      <p className="mt-1 text-slate-500">
+      <p className="mt-1 text-muted">
         Keep track of listings you&apos;re interested in.
       </p>
 

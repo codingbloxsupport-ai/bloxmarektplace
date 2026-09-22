@@ -20,18 +20,18 @@ export default async function SellerProfilePage({
 
   return (
     <div className="mx-auto max-w-[1400px] px-4 py-8 sm:px-6 lg:px-8">
-      <div className="flex flex-col items-start gap-6 rounded-2xl border border-slate-200 bg-white p-6 sm:flex-row sm:items-center">
+      <div className="flex flex-col items-start gap-6 rounded-2xl border border-border bg-white p-6 sm:flex-row sm:items-center">
         <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-brand-500 to-brand-700 text-lg font-semibold text-white">
           {seller.avatarInitials}
         </span>
         <div className="flex-1">
-          <h1 className="flex items-center gap-2 text-2xl font-extrabold text-slate-900">
+          <h1 className="flex items-center gap-2 text-2xl font-extrabold text-ink">
             {seller.name}
             {seller.verified && (
               <BadgeCheck className="h-5 w-5 text-brand-500" />
             )}
           </h1>
-          <p className="mt-1 text-sm text-slate-500">
+          <p className="mt-1 text-sm text-muted">
             {seller.verified ? "Verified Seller" : "Seller"} ·{" "}
             {seller.gamesSold} games sold · {listings.length} active listing
             {listings.length === 1 ? "" : "s"}
@@ -45,7 +45,7 @@ export default async function SellerProfilePage({
         )}
       </div>
 
-      <h2 className="mt-10 text-xl font-bold text-slate-900">
+      <h2 className="mt-10 text-xl font-bold text-ink">
         Listings from {seller.name}
       </h2>
       {listings.length > 0 ? (
@@ -55,7 +55,7 @@ export default async function SellerProfilePage({
           ))}
         </div>
       ) : (
-        <p className="mt-4 text-sm text-slate-500">
+        <p className="mt-4 text-sm text-muted">
           This seller has no active listings right now.
         </p>
       )}

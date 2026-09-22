@@ -19,7 +19,7 @@ export function CategoryPills() {
             "shrink-0 rounded-full px-4 py-2 text-sm font-medium transition-colors",
             active === category
               ? "bg-brand-500 text-white shadow-sm"
-              : "bg-white text-slate-600 ring-1 ring-inset ring-slate-200 hover:bg-slate-50"
+              : "bg-white text-muted ring-1 ring-inset ring-border hover:bg-surface-alt"
           )}
         >
           {category}
@@ -28,7 +28,7 @@ export function CategoryPills() {
       <button
         type="button"
         aria-label="More categories"
-        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-slate-500 ring-1 ring-inset ring-slate-200 hover:bg-slate-50"
+        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-muted ring-1 ring-inset ring-border hover:bg-surface-alt"
       >
         <ChevronRight className="h-4 w-4" />
       </button>

@@ -14,19 +14,19 @@ export default function BrowsePage() {
         <div className="min-w-0 flex-1">
           <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <h1 className="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
+              <h1 className="text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
                 Marketplace
               </h1>
-              <p className="mt-1 text-slate-500">
+              <p className="mt-1 text-muted">
                 Discover and buy incredible Roblox games from verified
                 creators.
               </p>
             </div>
             <div className="text-right">
-              <p className="text-sm font-semibold text-slate-700">
+              <p className="text-sm font-semibold text-ink">
                 {games.length} listings live
               </p>
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-muted">
                 New listings appear here as sellers join.
               </p>
             </div>

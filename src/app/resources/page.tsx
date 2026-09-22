@@ -25,10 +25,10 @@ export default function ResourcesPage() {
   return (
     <div className="mx-auto max-w-[1000px] px-4 py-8 sm:px-6 lg:px-8">
       <div className="max-w-2xl">
-        <h1 className="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
+        <h1 className="text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
           Resources
         </h1>
-        <p className="mt-2 text-slate-500">
+        <p className="mt-2 text-muted">
           Guides, policies, and answers to help you buy and sell with
           confidence.
         </p>
@@ -56,26 +56,26 @@ export default function ResourcesPage() {
       </div>
 
       <div className="mt-14">
-        <h2 className="flex items-center gap-2 text-xl font-bold text-slate-900">
+        <h2 className="flex items-center gap-2 text-xl font-bold text-ink">
           <HelpCircle className="h-5 w-5 text-brand-500" />
           Frequently Asked Questions
         </h2>
-        <div className="mt-5 divide-y divide-slate-200 rounded-2xl border border-slate-200 bg-white">
+        <div className="mt-5 divide-y divide-border rounded-2xl border border-border bg-white">
           {faqs.map((faq) => (
             <div key={faq.q} className="p-5">
-              <p className="text-sm font-semibold text-slate-800">{faq.q}</p>
-              <p className="mt-1.5 text-sm text-slate-500">{faq.a}</p>
+              <p className="text-sm font-semibold text-ink">{faq.q}</p>
+              <p className="mt-1.5 text-sm text-muted">{faq.a}</p>
             </div>
           ))}
         </div>
       </div>
 
-      <div className="mt-10 flex flex-col items-start gap-3 rounded-2xl border border-slate-200 bg-white p-6 sm:flex-row sm:items-center sm:justify-between">
+      <div className="mt-10 flex flex-col items-start gap-3 rounded-2xl border border-border bg-white p-6 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <p className="text-sm font-semibold text-slate-800">
+          <p className="text-sm font-semibold text-ink">
             Still have questions?
           </p>
-          <p className="text-sm text-slate-500">
+          <p className="text-sm text-muted">
             Our support team responds within a few hours.
           </p>
         </div>
@@ -104,13 +104,13 @@ function ResourceCard({
   return (
     <div
       id={id}
-      className="scroll-mt-24 rounded-2xl border border-slate-200 bg-white p-5"
+      className="scroll-mt-24 rounded-2xl border border-border bg-white p-5"
     >
       <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-50 text-brand-600">
         {icon}
       </span>
-      <p className="mt-3 text-sm font-semibold text-slate-800">{title}</p>
-      <p className="mt-1 text-sm text-slate-500">{body}</p>
+      <p className="mt-3 text-sm font-semibold text-ink">{title}</p>
+      <p className="mt-1 text-sm text-muted">{body}</p>
     </div>
   );
 }

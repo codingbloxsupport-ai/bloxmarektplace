@@ -15,10 +15,10 @@ export default function SellPage() {
   return (
     <div className="mx-auto max-w-[1200px] px-4 py-8 sm:px-6 lg:px-8">
       <div className="max-w-2xl">
-        <h1 className="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
+        <h1 className="text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
           Sell Your Game
         </h1>
-        <p className="mt-2 text-slate-500">
+        <p className="mt-2 text-muted">
           List your Roblox game in front of thousands of vetted buyers.
           Escrow-protected payouts and a dedicated listing review team.
         </p>
@@ -29,10 +29,10 @@ export default function SellPage() {
           {submitted ? (
             <div className="flex flex-col items-center rounded-2xl border border-emerald-200 bg-emerald-50 px-6 py-16 text-center">
               <CheckCircle2 className="h-10 w-10 text-emerald-600" />
-              <h2 className="mt-4 text-lg font-semibold text-slate-800">
+              <h2 className="mt-4 text-lg font-semibold text-ink">
                 Listing submitted for review
               </h2>
-              <p className="mt-1 max-w-sm text-sm text-slate-600">
+              <p className="mt-1 max-w-sm text-sm text-muted">
                 Our team typically reviews new listings within 24-48 hours.
                 We&apos;ll email you once it&apos;s live.
               </p>
@@ -47,7 +47,7 @@ export default function SellPage() {
           ) : (
             <form
               onSubmit={handleSubmit}
-              className="space-y-6 rounded-2xl border border-slate-200 bg-white p-6"
+              className="space-y-6 rounded-2xl border border-border bg-white p-6"
             >
               <Field label="Game title" htmlFor="title">
                 <input
@@ -171,7 +171,7 @@ function Field({
     <div>
       <label
         htmlFor={htmlFor}
-        className="mb-1.5 block text-sm font-semibold text-slate-700"
+        className="mb-1.5 block text-sm font-semibold text-ink"
       >
         {label}
       </label>
@@ -190,12 +190,12 @@ function InfoCard({
   body: string;
 }) {
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white p-5">
+    <div className="rounded-2xl border border-border bg-white p-5">
       <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-50 text-brand-600">
         {icon}
       </span>
-      <p className="mt-3 text-sm font-semibold text-slate-800">{title}</p>
-      <p className="mt-1 text-sm text-slate-500">{body}</p>
+      <p className="mt-3 text-sm font-semibold text-ink">{title}</p>
+      <p className="mt-1 text-sm text-muted">{body}</p>
     </div>
   );
 }

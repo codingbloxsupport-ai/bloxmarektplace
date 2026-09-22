@@ -21,7 +21,7 @@ export function DualRangeSlider({
   return (
     <div>
       <div className="relative h-5">
-        <div className="absolute top-1/2 h-1.5 w-full -translate-y-1/2 rounded-full bg-slate-200" />
+        <div className="absolute top-1/2 h-1.5 w-full -translate-y-1/2 rounded-full bg-border" />
         <div
           className="absolute top-1/2 h-1.5 -translate-y-1/2 rounded-full bg-brand-500"
           style={{
@@ -52,7 +52,7 @@ export function DualRangeSlider({
           className="range-thumb pointer-events-none absolute inset-0 w-full appearance-none bg-transparent"
         />
       </div>
-      <div className="mt-2 flex items-center justify-between text-xs font-medium text-slate-500">
+      <div className="mt-2 flex items-center justify-between text-xs font-medium text-muted">
         <span>{formatValue(low)}</span>
         <span>{formatValue(high)}{high === max ? "+" : ""}</span>
       </div>

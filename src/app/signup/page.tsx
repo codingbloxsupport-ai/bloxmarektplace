@@ -16,21 +16,21 @@ export default function SignupPage() {
   return (
     <div className="mx-auto flex max-w-md flex-col items-center px-4 py-16 sm:px-6">
       <Logo />
-      <h1 className="mt-6 text-2xl font-extrabold tracking-tight text-slate-900">
+      <h1 className="mt-6 text-2xl font-extrabold tracking-tight text-ink">
         Create your account
       </h1>
-      <p className="mt-1 text-center text-sm text-slate-500">
+      <p className="mt-1 text-center text-sm text-muted">
         Join to buy and sell established Roblox games.
       </p>
 
       <form
         onSubmit={handleSubmit}
-        className="mt-8 w-full space-y-4 rounded-2xl border border-slate-200 bg-white p-6"
+        className="mt-8 w-full space-y-4 rounded-2xl border border-border bg-white p-6"
       >
         <div>
           <label
             htmlFor="name"
-            className="mb-1.5 block text-sm font-semibold text-slate-700"
+            className="mb-1.5 block text-sm font-semibold text-ink"
           >
             Full name
           </label>
@@ -39,7 +39,7 @@ export default function SignupPage() {
         <div>
           <label
             htmlFor="email"
-            className="mb-1.5 block text-sm font-semibold text-slate-700"
+            className="mb-1.5 block text-sm font-semibold text-ink"
           >
             Email
           </label>
@@ -54,7 +54,7 @@ export default function SignupPage() {
         <div>
           <label
             htmlFor="password"
-            className="mb-1.5 block text-sm font-semibold text-slate-700"
+            className="mb-1.5 block text-sm font-semibold text-ink"
           >
             Password
           </label>
@@ -74,7 +74,7 @@ export default function SignupPage() {
         </button>
       </form>
 
-      <p className="mt-6 text-sm text-slate-500">
+      <p className="mt-6 text-sm text-muted">
         Already have an account?{" "}
         <Link
           href="/login"

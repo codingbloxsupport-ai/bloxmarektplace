@@ -18,7 +18,7 @@ export function ToggleSwitch({ checked, onChange, label }: ToggleSwitchProps) {
       onClick={() => onChange(!checked)}
       className={cn(
         "relative h-6 w-11 shrink-0 rounded-full transition-colors",
-        checked ? "bg-brand-500" : "bg-slate-200"
+        checked ? "bg-brand-500" : "bg-border"
       )}
     >
       <span

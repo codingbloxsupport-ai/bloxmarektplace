@@ -27,7 +27,7 @@ export function FilterSidebar() {
   return (
     <aside className="w-full shrink-0 space-y-6 lg:w-72">
       <div className="flex items-center justify-between">
-        <h2 className="text-base font-semibold text-slate-900">Filters</h2>
+        <h2 className="text-base font-semibold text-ink">Filters</h2>
         <button
           type="button"
           onClick={() => {
@@ -41,22 +41,22 @@ export function FilterSidebar() {
       </div>
 
       <div>
-        <label className="mb-2 block text-sm font-semibold text-slate-700">
+        <label className="mb-2 block text-sm font-semibold text-ink">
           Category
         </label>
         <div className="relative">
-          <select className="w-full appearance-none rounded-lg border border-slate-200 bg-white py-2.5 pl-3 pr-9 text-sm text-slate-700 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-100">
+          <select className="w-full appearance-none rounded-lg border border-border bg-white py-2.5 pl-3 pr-9 text-sm text-ink focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-100">
             <option>All Categories</option>
             {genres.map((g) => (
               <option key={g}>{g}</option>
             ))}
           </select>
-          <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+          <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted" />
         </div>
       </div>
 
       <div>
-        <label className="mb-2 block text-sm font-semibold text-slate-700">
+        <label className="mb-2 block text-sm font-semibold text-ink">
           Genre
         </label>
         <div className="space-y-2.5">
@@ -65,12 +65,12 @@ export function FilterSidebar() {
               key={genre}
               className="flex cursor-pointer items-center text-sm"
             >
-              <span className="flex items-center gap-2.5 text-slate-600">
+              <span className="flex items-center gap-2.5 text-muted">
                 <input
                   type="checkbox"
                   checked={selectedGenres.includes(genre)}
                   onChange={() => toggleGenre(genre)}
-                  className="h-4 w-4 rounded border-slate-300 text-brand-500 focus:ring-brand-500"
+                  className="h-4 w-4 rounded border-border text-brand-500 focus:ring-brand-500"
                 />
                 {genre}
               </span>
@@ -80,7 +80,7 @@ export function FilterSidebar() {
         <button
           type="button"
           onClick={() => setShowAllGenres((v) => !v)}
-          className="mt-3 flex items-center gap-1 text-sm font-medium text-slate-500 hover:text-slate-700"
+          className="mt-3 flex items-center gap-1 text-sm font-medium text-muted hover:text-ink"
         >
           {showAllGenres ? "Show less" : "Show more"}
           <ChevronDown
@@ -89,8 +89,8 @@ export function FilterSidebar() {
         </button>
       </div>
 
-      <div className="border-t border-slate-200 pt-6">
-        <label className="mb-3 block text-sm font-semibold text-slate-700">
+      <div className="border-t border-border pt-6">
+        <label className="mb-3 block text-sm font-semibold text-ink">
           Price Range
         </label>
         <DualRangeSlider
@@ -101,8 +101,8 @@ export function FilterSidebar() {
         />
       </div>
 
-      <div className="border-t border-slate-200 pt-6">
-        <label className="mb-3 block text-sm font-semibold text-slate-700">
+      <div className="border-t border-border pt-6">
+        <label className="mb-3 block text-sm font-semibold text-ink">
           Monthly Revenue
         </label>
         <DualRangeSlider
@@ -113,12 +113,12 @@ export function FilterSidebar() {
         />
       </div>
 
-      <div className="flex items-center justify-between border-t border-slate-200 pt-6">
+      <div className="flex items-center justify-between border-t border-border pt-6">
         <div>
-          <p className="text-sm font-semibold text-slate-700">
+          <p className="text-sm font-semibold text-ink">
             Verified Sellers Only
           </p>
-          <p className="mt-0.5 text-xs text-slate-400">
+          <p className="mt-0.5 text-xs text-muted">
             Show only verified and trusted sellers
           </p>
         </div>
@@ -129,19 +129,19 @@ export function FilterSidebar() {
         />
       </div>
 
-      <div className="border-t border-slate-200 pt-6">
-        <label className="mb-2 block text-sm font-semibold text-slate-700">
+      <div className="border-t border-border pt-6">
+        <label className="mb-2 block text-sm font-semibold text-ink">
           Sort By
         </label>
         <div className="relative">
-          <select className="w-full appearance-none rounded-lg border border-slate-200 bg-white py-2.5 pl-3 pr-9 text-sm text-slate-700 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-100">
+          <select className="w-full appearance-none rounded-lg border border-border bg-white py-2.5 pl-3 pr-9 text-sm text-ink focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-100">
             <option>Most Relevant</option>
             <option>Price: Low to High</option>
             <option>Price: High to Low</option>
             <option>Revenue: High to Low</option>
             <option>Newest</option>
           </select>
-          <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+          <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted" />
         </div>
       </div>
 
@@ -151,17 +151,17 @@ export function FilterSidebar() {
             <Headphones className="h-4.5 w-4.5" />
           </span>
           <div>
-            <p className="text-sm font-semibold text-slate-800">
+            <p className="text-sm font-semibold text-ink">
               Need help?
             </p>
-            <p className="mt-0.5 text-xs text-slate-500">
+            <p className="mt-0.5 text-xs text-muted">
               Our team is here to help you find the right game.
             </p>
           </div>
         </div>
         <button
           type="button"
-          className="mt-3 w-full rounded-lg border border-slate-200 bg-white py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
+          className="mt-3 w-full rounded-lg border border-border bg-white py-2 text-sm font-medium text-ink hover:bg-surface-alt"
         >
           Contact Support
         </button>
