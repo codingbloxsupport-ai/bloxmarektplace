@@ -1,17 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { FormEvent } from "react";
+import { useSearchParams } from "next/navigation";
+import { useActionState } from "react";
 import { Logo } from "@/components/Logo";
+import { login } from "@/app/actions/auth";
 
 export default function LoginPage() {
-  const router = useRouter();
-
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    router.push("/");
-  }
+  const [state, formAction, pending] = useActionState(login, undefined);
+  const searchParams = useSearchParams();
+  const next = searchParams.get("next") ?? "/";
 
   return (
     <div className="mx-auto flex max-w-md flex-col items-center px-4 py-16 sm:px-6">
@@ -24,9 +22,15 @@ export default function LoginPage() {
       </p>
 
       <form
-        onSubmit={handleSubmit}
+        action={formAction}
         className="mt-8 w-full space-y-4 rounded-2xl border border-border bg-white p-6"
       >
+        {state?.message && (
+          <p className="rounded-lg bg-rose-50 px-3 py-2 text-sm text-rose-600">
+            {state.message}
+          </p>
+        )}
+        <input type="hidden" name="next" value={next} />
         <div>
           <label
             htmlFor="email"
@@ -36,11 +40,15 @@ export default function LoginPage() {
           </label>
           <input
             id="email"
+            name="email"
             type="email"
             required
             placeholder="you@example.com"
             className="input"
           />
+          {state?.errors?.email && (
+            <p className="mt-1 text-xs text-rose-600">{state.errors.email[0]}</p>
+          )}
         </div>
         <div>
           <label
@@ -51,17 +59,24 @@ export default function LoginPage() {
           </label>
           <input
             id="password"
+            name="password"
             type="password"
             required
             placeholder="••••••••"
             className="input"
           />
+          {state?.errors?.password && (
+            <p className="mt-1 text-xs text-rose-600">
+              {state.errors.password[0]}
+            </p>
+          )}
         </div>
         <button
           type="submit"
-          className="w-full rounded-xl bg-brand-500 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-brand-600"
+          disabled={pending}
+          className="w-full rounded-xl bg-brand-500 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-brand-600 disabled:opacity-60"
         >
-          Log In
+          {pending ? "Logging in..." : "Log In"}
         </button>
       </form>
 

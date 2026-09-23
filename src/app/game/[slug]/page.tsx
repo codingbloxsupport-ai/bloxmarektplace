@@ -10,13 +10,9 @@ import {
   TrendingUp,
   Users,
 } from "lucide-react";
-import { games } from "@/data/games";
 import { GameCard } from "@/components/GameCard";
 import { formatCompact, formatPrice, formatVisits } from "@/lib/format";
-
-export function generateStaticParams() {
-  return games.map((game) => ({ slug: game.slug }));
-}
+import { getListingBySlug, getRelatedListings } from "@/lib/listings";
 
 export default async function GameDetailPage({
   params,
@@ -24,14 +20,10 @@ export default async function GameDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const game = games.find((g) => g.slug === slug);
+  const game = await getListingBySlug(slug);
   if (!game) notFound();
 
-  const related = games
-    .filter((g) => g.id !== game.id && g.category === game.category)
-    .slice(0, 3);
-  const fallbackRelated = games.filter((g) => g.id !== game.id).slice(0, 3);
-  const relatedGames = related.length > 0 ? related : fallbackRelated;
+  const relatedGames = await getRelatedListings(game.category, game.id);
 
   return (
     <div className="mx-auto max-w-[1400px] px-4 py-8 sm:px-6 lg:px-8">

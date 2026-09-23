@@ -1,17 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { FormEvent } from "react";
+import { useActionState } from "react";
 import { Logo } from "@/components/Logo";
+import { signup } from "@/app/actions/auth";
 
 export default function SignupPage() {
-  const router = useRouter();
-
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    router.push("/");
-  }
+  const [state, formAction, pending] = useActionState(signup, undefined);
 
   return (
     <div className="mx-auto flex max-w-md flex-col items-center px-4 py-16 sm:px-6">
@@ -24,9 +19,14 @@ export default function SignupPage() {
       </p>
 
       <form
-        onSubmit={handleSubmit}
+        action={formAction}
         className="mt-8 w-full space-y-4 rounded-2xl border border-border bg-white p-6"
       >
+        {state?.message && (
+          <p className="rounded-lg bg-rose-50 px-3 py-2 text-sm text-rose-600">
+            {state.message}
+          </p>
+        )}
         <div>
           <label
             htmlFor="name"
@@ -34,7 +34,16 @@ export default function SignupPage() {
           >
             Full name
           </label>
-          <input id="name" required placeholder="Alex Johnson" className="input" />
+          <input
+            id="name"
+            name="name"
+            required
+            placeholder="Alex Johnson"
+            className="input"
+          />
+          {state?.errors?.name && (
+            <p className="mt-1 text-xs text-rose-600">{state.errors.name[0]}</p>
+          )}
         </div>
         <div>
           <label
@@ -45,11 +54,15 @@ export default function SignupPage() {
           </label>
           <input
             id="email"
+            name="email"
             type="email"
             required
             placeholder="you@example.com"
             className="input"
           />
+          {state?.errors?.email && (
+            <p className="mt-1 text-xs text-rose-600">{state.errors.email[0]}</p>
+          )}
         </div>
         <div>
           <label
@@ -60,17 +73,26 @@ export default function SignupPage() {
           </label>
           <input
             id="password"
+            name="password"
             type="password"
             required
             placeholder="At least 8 characters"
             className="input"
           />
+          {state?.errors?.password && (
+            <ul className="mt-1 space-y-0.5 text-xs text-rose-600">
+              {state.errors.password.map((error) => (
+                <li key={error}>{error}</li>
+              ))}
+            </ul>
+          )}
         </div>
         <button
           type="submit"
-          className="w-full rounded-xl bg-brand-500 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-brand-600"
+          disabled={pending}
+          className="w-full rounded-xl bg-brand-500 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-brand-600 disabled:opacity-60"
         >
-          Create Account
+          {pending ? "Creating account..." : "Create Account"}
         </button>
       </form>
 

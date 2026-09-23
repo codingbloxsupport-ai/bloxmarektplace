@@ -1,0 +1,51 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum ListingStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+model User {
+  id             String    @id @default(cuid())
+  name           String
+  email          String    @unique
+  passwordHash   String
+  verifiedSeller Boolean   @default(false)
+  gamesSold      Int       @default(0)
+  listings       Listing[]
+  createdAt      DateTime  @default(now())
+}
+
+model Listing {
+  id              String        @id @default(cuid())
+  slug            String        @unique
+  title           String
+  category        String
+  tags            String[]
+  price           Int
+  monthlyRevenue  Int
+  monthlyVisits   Int
+  description     String
+  gradientFrom    String        @default("#0a5cf5")
+  gradientTo      String        @default("#0a2472")
+  featured        Boolean       @default(false)
+  escrowProtected Boolean       @default(true)
+  status          ListingStatus @default(PENDING)
+  sellerId        String
+  seller          User          @relation(fields: [sellerId], references: [id], onDelete: Cascade)
+  createdAt       DateTime      @default(now())
+
+  @@index([sellerId])
+  @@index([status])
+}

@@ -4,6 +4,7 @@ import "./globals.css";
 import { siteConfig } from "@/config/site";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { getCurrentUser } from "@/lib/dal";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,14 +24,16 @@ export const metadata: Metadata = {
   description: siteConfig.description,
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default async function RootLayout({ children }: LayoutProps<"/">) {
+  const user = await getCurrentUser();
+
   return (
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <Header />
+        <Header user={user} />
         <main className="flex-1">{children}</main>
         <Footer />
       </body>

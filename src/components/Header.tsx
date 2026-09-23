@@ -3,15 +3,23 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { FormEvent, useEffect, useRef, useState } from "react";
-import { ChevronDown, Menu, Search, X } from "lucide-react";
+import { ChevronDown, LogOut, Menu, Search, X } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/cn";
+import { initialsFrom } from "@/lib/initials";
+import { logout } from "@/app/actions/auth";
 
-export function Header() {
+interface HeaderUser {
+  name: string;
+  verifiedSeller: boolean;
+}
+
+export function Header({ user }: { user: HeaderUser | null }) {
   const pathname = usePathname();
   const router = useRouter();
   const [resourcesOpen, setResourcesOpen] = useState(false);
+  const [accountOpen, setAccountOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [lastPathname, setLastPathname] = useState(pathname);
   const [query, setQuery] = useState("");
@@ -108,18 +116,64 @@ export function Header() {
         </form>
 
         <div className="ml-auto flex shrink-0 items-center gap-2">
-          <Link
-            href="/login"
-            className="hidden rounded-lg px-4 py-2 text-sm font-semibold text-ink hover:bg-surface-alt sm:inline-block"
-          >
-            Sign In
-          </Link>
-          <Link
-            href="/signup"
-            className="hidden rounded-lg bg-brand-500 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-brand-600 sm:inline-block"
-          >
-            Get Started
-          </Link>
+          {user ? (
+            <div
+              className="relative hidden sm:block"
+              onMouseEnter={() => setAccountOpen(true)}
+              onMouseLeave={() => setAccountOpen(false)}
+            >
+              <button
+                type="button"
+                className="flex items-center gap-2 rounded-lg py-1.5 pl-1.5 pr-3 text-sm font-semibold text-ink hover:bg-surface-alt"
+              >
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-brand-500 to-brand-700 text-xs font-semibold text-white">
+                  {initialsFrom(user.name)}
+                </span>
+                {user.name.split(" ")[0]}
+                <ChevronDown className="h-4 w-4 text-muted" />
+              </button>
+              {accountOpen && (
+                <div className="absolute right-0 top-full w-48 rounded-xl border border-border bg-white p-1.5 shadow-lg">
+                  <Link
+                    href="/watchlist"
+                    className="block rounded-lg px-3 py-2 text-sm text-muted hover:bg-soft-blue hover:text-ink"
+                  >
+                    Watchlist
+                  </Link>
+                  <Link
+                    href="/sell"
+                    className="block rounded-lg px-3 py-2 text-sm text-muted hover:bg-soft-blue hover:text-ink"
+                  >
+                    Sell Your Game
+                  </Link>
+                  <form action={logout}>
+                    <button
+                      type="submit"
+                      className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-sm text-muted hover:bg-soft-blue hover:text-ink"
+                    >
+                      <LogOut className="h-3.5 w-3.5" />
+                      Log Out
+                    </button>
+                  </form>
+                </div>
+              )}
+            </div>
+          ) : (
+            <>
+              <Link
+                href="/login"
+                className="hidden rounded-lg px-4 py-2 text-sm font-semibold text-ink hover:bg-surface-alt sm:inline-block"
+              >
+                Sign In
+              </Link>
+              <Link
+                href="/signup"
+                className="hidden rounded-lg bg-brand-500 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-brand-600 sm:inline-block"
+              >
+                Get Started
+              </Link>
+            </>
+          )}
 
           <button
             type="button"
@@ -177,18 +231,39 @@ export function Header() {
               </Link>
             ))}
             <div className="my-2 h-px bg-border" />
-            <Link
-              href="/login"
-              className="rounded-lg px-2 py-2.5 text-sm font-semibold text-ink"
-            >
-              Sign In
-            </Link>
-            <Link
-              href="/signup"
-              className="mt-1 rounded-lg bg-brand-500 px-2 py-2.5 text-center text-sm font-semibold text-white"
-            >
-              Get Started
-            </Link>
+            {user ? (
+              <>
+                <Link
+                  href="/watchlist"
+                  className="rounded-lg px-2 py-2.5 text-sm font-semibold text-ink"
+                >
+                  Watchlist
+                </Link>
+                <form action={logout}>
+                  <button
+                    type="submit"
+                    className="mt-1 w-full rounded-lg bg-surface-alt px-2 py-2.5 text-left text-sm font-semibold text-ink"
+                  >
+                    Log Out
+                  </button>
+                </form>
+              </>
+            ) : (
+              <>
+                <Link
+                  href="/login"
+                  className="rounded-lg px-2 py-2.5 text-sm font-semibold text-ink"
+                >
+                  Sign In
+                </Link>
+                <Link
+                  href="/signup"
+                  className="mt-1 rounded-lg bg-brand-500 px-2 py-2.5 text-center text-sm font-semibold text-white"
+                >
+                  Get Started
+                </Link>
+              </>
+            )}
           </nav>
         </div>
       )}

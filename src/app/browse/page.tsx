@@ -3,7 +3,7 @@ import { CategoryPills } from "@/components/CategoryPills";
 import { EmptyState } from "@/components/EmptyState";
 import { FilterSidebar } from "@/components/FilterSidebar";
 import { GameCard } from "@/components/GameCard";
-import { games } from "@/data/games";
+import { getApprovedListings } from "@/lib/listings";
 
 export default async function BrowsePage({
   searchParams,
@@ -12,9 +12,7 @@ export default async function BrowsePage({
 }) {
   const { q } = await searchParams;
   const query = q?.trim();
-  const results = query
-    ? games.filter((g) => g.title.toLowerCase().includes(query.toLowerCase()))
-    : games;
+  const results = await getApprovedListings(query);
 
   return (
     <div className="mx-auto max-w-[1600px] px-4 py-8 sm:px-6 lg:px-8">
@@ -34,7 +32,7 @@ export default async function BrowsePage({
             </div>
             <div className="text-right">
               <p className="text-sm font-semibold text-ink">
-                {results.length} listings live
+                {results.length} listing{results.length === 1 ? "" : "s"} live
               </p>
               <p className="text-xs text-muted">
                 New listings appear here as sellers join.

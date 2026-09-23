@@ -1,11 +1,7 @@
 import { notFound } from "next/navigation";
 import { BadgeCheck, ShieldCheck } from "lucide-react";
-import { games, sellers } from "@/data/games";
 import { GameCard } from "@/components/GameCard";
-
-export function generateStaticParams() {
-  return Object.keys(sellers).map((id) => ({ id }));
-}
+import { getSellerWithListings } from "@/lib/listings";
 
 export default async function SellerProfilePage({
   params,
@@ -13,10 +9,10 @@ export default async function SellerProfilePage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const seller = sellers[id];
-  if (!seller) notFound();
+  const data = await getSellerWithListings(id);
+  if (!data) notFound();
 
-  const listings = games.filter((g) => g.seller.id === id);
+  const { seller, listings } = data;
 
   return (
     <div className="mx-auto max-w-[1400px] px-4 py-8 sm:px-6 lg:px-8">

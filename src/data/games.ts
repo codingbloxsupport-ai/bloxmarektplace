@@ -1,12 +1,5 @@
-import { GameListing } from "@/types/game";
-
-// No real listings yet — sellers and games populate this once the
-// marketplace has live data (API/database), replacing these empty
-// collections.
-export const sellers: Record<string, GameListing["seller"]> = {};
-
-export const games: GameListing[] = [];
-
+// Fixed category taxonomy for the marketplace. Listings themselves are
+// stored in the database now — see src/lib/listings.ts.
 export const categories = [
   "All Games",
   "Tycoon",

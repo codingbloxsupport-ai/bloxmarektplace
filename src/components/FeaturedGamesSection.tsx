@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { ArrowRight, PackageSearch } from "lucide-react";
-import { games } from "@/data/games";
+import { getApprovedListings } from "@/lib/listings";
 import { GameCard } from "@/components/GameCard";
 
-export function FeaturedGamesSection() {
-  const featured = games.slice(0, 4);
+export async function FeaturedGamesSection() {
+  const listings = await getApprovedListings();
+  const featured = listings.slice(0, 4);
 
   return (
     <section className="mx-auto max-w-[1400px] px-6 py-16 lg:px-10">
