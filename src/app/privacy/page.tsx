@@ -14,7 +14,7 @@ export default function PrivacyPage() {
 
       <div className="mt-10">
         <EmptyState
-          icon={<ShieldCheck className="h-6 w-6" />}
+          icon={<ShieldCheck className="h-8 w-8" />}
           title="Not published yet"
           body="We're still drafting our full privacy policy. In the meantime, reach out to support with any questions about your data."
           action={{ label: "Contact Support", href: "/resources" }}

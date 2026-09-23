@@ -13,7 +13,7 @@ export default function WatchlistPage() {
 
       <div className="mt-10">
         <EmptyState
-          icon={<Heart className="h-6 w-6" />}
+          icon={<Heart className="h-8 w-8" />}
           title="Your watchlist is empty"
           body="Tap the heart icon on any listing to save it here for later."
           action={{ label: "Browse Marketplace", href: "/browse" }}

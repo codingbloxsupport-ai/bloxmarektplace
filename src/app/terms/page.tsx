@@ -14,7 +14,7 @@ export default function TermsPage() {
 
       <div className="mt-10">
         <EmptyState
-          icon={<FileText className="h-6 w-6" />}
+          icon={<FileText className="h-8 w-8" />}
           title="Not published yet"
           body="We're still drafting our full terms of service. In the meantime, reach out to support with any questions about how the marketplace works."
           action={{ label: "Contact Support", href: "/resources" }}

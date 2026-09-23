@@ -90,19 +90,19 @@ export default async function GameDetailPage({
               tone="brand"
             />
             <Stat
-              icon={<TrendingUp className="h-4 w-4" />}
+              icon={<TrendingUp className="h-5 w-5" />}
               value={`${formatCompact(game.monthlyRevenue)}/mo`}
               label="Monthly Revenue"
               tone="emerald"
             />
             <Stat
-              icon={<Users className="h-4 w-4" />}
+              icon={<Users className="h-5 w-5" />}
               value={formatVisits(game.monthlyVisits)}
               label="Monthly Visits"
               tone="amber"
             />
             <Stat
-              icon={<ShieldCheck className="h-4 w-4" />}
+              icon={<ShieldCheck className="h-5 w-5" />}
               value={game.escrowProtected ? "Protected" : "Standard"}
               label="Transaction"
               tone="slate"
@@ -211,19 +211,15 @@ function Stat({
   tone: "brand" | "emerald" | "amber" | "slate";
 }) {
   const toneClasses: Record<typeof tone, string> = {
-    brand: "bg-brand-100 text-brand-600",
-    emerald: "bg-emerald-100 text-emerald-600",
-    amber: "bg-amber-100 text-amber-600",
-    slate: "bg-border text-muted",
+    brand: "text-brand-600",
+    emerald: "text-emerald-600",
+    amber: "text-amber-600",
+    slate: "text-muted",
   };
 
   return (
     <div className="rounded-xl bg-surface-alt p-4">
-      <span
-        className={`flex h-8 w-8 items-center justify-center rounded-lg ${toneClasses[tone]}`}
-      >
-        {icon}
-      </span>
+      <span className={toneClasses[tone]}>{icon}</span>
       <p className="mt-2.5 text-base font-bold text-ink">{value}</p>
       <p className="text-xs text-muted">{label}</p>
     </div>

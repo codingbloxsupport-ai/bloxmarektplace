@@ -95,27 +95,21 @@ export function FeaturedListingPanel({ game }: { game: GameListing }) {
 
           <div className="grid grid-cols-3 gap-2">
             <div className="rounded-xl bg-surface-alt p-3">
-              <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-brand-100 text-brand-600">
-                <span className="text-sm font-bold">$</span>
-              </span>
+              <span className="text-sm font-bold text-brand-600">$</span>
               <p className="mt-2 text-sm font-bold text-ink">
                 {formatPrice(game.price)}
               </p>
               <p className="text-[11px] text-muted">Price</p>
             </div>
             <div className="rounded-xl bg-surface-alt p-3">
-              <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-emerald-100 text-emerald-600">
-                <TrendingUp className="h-4 w-4" />
-              </span>
+              <TrendingUp className="h-5 w-5 text-emerald-600" />
               <p className="mt-2 text-sm font-bold text-ink">
                 {formatCompact(game.monthlyRevenue)}
               </p>
               <p className="text-[11px] text-muted">Monthly Revenue</p>
             </div>
             <div className="rounded-xl bg-surface-alt p-3">
-              <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-amber-100 text-amber-600">
-                <Users className="h-4 w-4" />
-              </span>
+              <Users className="h-5 w-5 text-amber-600" />
               <p className="mt-2 text-sm font-bold text-ink">
                 {formatVisits(game.monthlyVisits)}
               </p>
@@ -207,9 +201,7 @@ function TrustRow({
 }) {
   return (
     <div className="flex items-start gap-3">
-      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-600">
-        {icon}
-      </span>
+      <span className="mt-0.5 shrink-0 text-brand-600">{icon}</span>
       <div>
         <p className="text-sm font-semibold text-ink">{title}</p>
         <p className="text-xs text-muted">{subtitle}</p>

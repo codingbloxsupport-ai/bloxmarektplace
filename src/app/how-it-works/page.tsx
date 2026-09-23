@@ -117,9 +117,7 @@ function Section({
             key={step.title}
             className="relative rounded-2xl border border-border bg-white p-5"
           >
-            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
-              <step.icon className="h-5 w-5" />
-            </span>
+            <step.icon className="h-5 w-5 text-brand-600" />
             <span className="absolute right-5 top-5 text-2xl font-extrabold text-border">
               {i + 1}
             </span>

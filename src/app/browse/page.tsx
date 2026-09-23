@@ -55,14 +55,14 @@ export default async function BrowsePage({
               </div>
             ) : query ? (
               <EmptyState
-                icon={<PackageSearch className="h-6 w-6" />}
+                icon={<PackageSearch className="h-8 w-8" />}
                 title={`No results for "${query}"`}
                 body="Try a different search term, or browse all listings."
                 action={{ label: "Browse All Games", href: "/browse" }}
               />
             ) : (
               <EmptyState
-                icon={<PackageSearch className="h-6 w-6" />}
+                icon={<PackageSearch className="h-8 w-8" />}
                 title="No listings yet"
                 body="This marketplace is brand new — nobody has listed a game for sale yet. Be the first."
                 action={{ label: "Sell Your Game", href: "/sell" }}
