@@ -19,6 +19,7 @@ export const getCurrentUser = cache(async () => {
       id: true,
       name: true,
       email: true,
+      robloxUsername: true,
       verifiedSeller: true,
       gamesSold: true,
       createdAt: true,

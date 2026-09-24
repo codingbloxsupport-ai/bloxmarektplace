@@ -7,7 +7,7 @@ import { approveListing, rejectListing } from "@/app/actions/admin";
 
 export default async function AdminListingsPage() {
   const user = await getCurrentUser();
-  if (!user || !isAdminEmail(user.email)) notFound();
+  if (!user || !user.email || !isAdminEmail(user.email)) notFound();
 
   const pending = await prisma.listing.findMany({
     where: { status: "PENDING" },
@@ -36,7 +36,12 @@ export default async function AdminListingsPage() {
                 <p className="text-lg font-bold text-ink">{listing.title}</p>
                 <p className="text-sm text-muted">
                   {listing.category} · {formatPrice(listing.price)} · by{" "}
-                  {listing.seller.name} ({listing.seller.email})
+                  {listing.seller.name} (
+                  {listing.seller.email ??
+                    (listing.seller.robloxUsername
+                      ? `Roblox: @${listing.seller.robloxUsername}`
+                      : "no contact info")}
+                  )
                 </p>
                 <p className="mt-2 max-w-xl text-sm text-muted">
                   {listing.description}

@@ -5,6 +5,7 @@ import { prisma } from "@/lib/db";
 import { hashPassword, verifyPassword } from "@/lib/password";
 import { createSession, deleteSession } from "@/lib/session";
 import { LoginSchema, SignupSchema } from "@/lib/validation";
+import { safeNextPath } from "@/lib/next-path";
 
 export type AuthFormState =
   | {
@@ -44,7 +45,7 @@ export async function signup(
   });
 
   await createSession(user.id);
-  redirect("/");
+  redirect(safeNextPath(formData.get("next")));
 }
 
 export async function login(
@@ -63,8 +64,12 @@ export async function login(
   const { email, password } = validated.data;
 
   const user = await prisma.user.findUnique({ where: { email } });
-  if (!user) {
-    return { message: "Invalid email or password." };
+  if (!user || !user.passwordHash) {
+    return {
+      message: user
+        ? "This account signs in with Roblox. Use “Continue with Roblox” below."
+        : "Invalid email or password.",
+    };
   }
 
   const passwordMatches = await verifyPassword(password, user.passwordHash);
@@ -73,13 +78,7 @@ export async function login(
   }
 
   await createSession(user.id);
-
-  const next = formData.get("next");
-  const safeNext =
-    typeof next === "string" && next.startsWith("/") && !next.startsWith("//")
-      ? next
-      : "/";
-  redirect(safeNext);
+  redirect(safeNextPath(formData.get("next")));
 }
 
 export async function logout() {

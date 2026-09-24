@@ -7,7 +7,7 @@ import { isAdminEmail } from "@/lib/admin";
 
 async function requireAdmin() {
   const user = await getCurrentUser();
-  if (!user || !isAdminEmail(user.email)) {
+  if (!user || !user.email || !isAdminEmail(user.email)) {
     throw new Error("Forbidden");
   }
 }

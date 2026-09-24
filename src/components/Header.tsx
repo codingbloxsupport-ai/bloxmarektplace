@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { FormEvent, useEffect, useRef, useState } from "react";
-import { ChevronDown, LogOut, Menu, Search, X } from "lucide-react";
+import { ChevronDown, Gamepad2, LogOut, Menu, Search, X } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/cn";
@@ -12,6 +12,7 @@ import { logout } from "@/app/actions/auth";
 
 interface HeaderUser {
   name: string;
+  robloxUsername: string | null;
   verifiedSeller: boolean;
 }
 
@@ -133,7 +134,7 @@ export function Header({ user }: { user: HeaderUser | null }) {
                 <ChevronDown className="h-4 w-4 text-muted" />
               </button>
               {accountOpen && (
-                <div className="absolute right-0 top-full w-48 rounded-xl border border-border bg-white p-1.5 shadow-lg">
+                <div className="absolute right-0 top-full w-52 rounded-xl border border-border bg-white p-1.5 shadow-lg">
                   <Link
                     href="/watchlist"
                     className="block rounded-lg px-3 py-2 text-sm text-muted hover:bg-soft-blue hover:text-ink"
@@ -146,6 +147,20 @@ export function Header({ user }: { user: HeaderUser | null }) {
                   >
                     Sell Your Game
                   </Link>
+                  {user.robloxUsername ? (
+                    <span className="flex items-center gap-2 px-3 py-2 text-sm text-muted">
+                      <Gamepad2 className="h-3.5 w-3.5 text-brand-600" />
+                      Roblox: @{user.robloxUsername}
+                    </span>
+                  ) : (
+                    <Link
+                      href="/api/auth/roblox"
+                      className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-muted hover:bg-soft-blue hover:text-ink"
+                    >
+                      <Gamepad2 className="h-3.5 w-3.5" />
+                      Connect Roblox
+                    </Link>
+                  )}
                   <form action={logout}>
                     <button
                       type="submit"
@@ -239,6 +254,14 @@ export function Header({ user }: { user: HeaderUser | null }) {
                 >
                   Watchlist
                 </Link>
+                {!user.robloxUsername && (
+                  <Link
+                    href="/api/auth/roblox"
+                    className="rounded-lg px-2 py-2.5 text-sm font-semibold text-ink"
+                  >
+                    Connect Roblox
+                  </Link>
+                )}
                 <form action={logout}>
                   <button
                     type="submit"
