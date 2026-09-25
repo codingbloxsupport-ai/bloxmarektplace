@@ -15,9 +15,21 @@ const trustPoints = [
 export default function LandingPage() {
   return (
     <div>
-      <section className="border-b border-border bg-white">
-        <div className="mx-auto grid max-w-[1400px] grid-cols-1 lg:grid-cols-[1fr_1.05fr]">
-          <div className="order-2 flex flex-col justify-center px-6 py-14 text-center lg:order-1 lg:px-10 lg:py-24 lg:text-left">
+      <section
+        className="relative overflow-hidden border-b border-border bg-cover bg-center"
+        style={{ backgroundImage: "url('/hero/desk-scene-wash.webp')" }}
+      >
+        <div className="relative mx-6 mt-6 h-56 overflow-hidden rounded-2xl sm:h-72 lg:hidden">
+          <div
+            className="absolute inset-0 bg-cover bg-[position:68%_22%]"
+            style={{ backgroundImage: "url('/hero/desk-scene.webp')" }}
+            role="img"
+            aria-label="A seller reviewing their Roblox game listings on BloxMarket from a widescreen monitor"
+          />
+        </div>
+
+        <div className="relative mx-auto grid max-w-[1400px] grid-cols-1 lg:grid-cols-[1fr_1.05fr]">
+          <div className="flex flex-col justify-center px-6 py-14 text-center lg:px-10 lg:py-24 lg:text-left">
             <span className="mx-auto inline-flex w-fit items-center gap-2 rounded-full bg-surface-alt px-3 py-1 text-xs font-semibold uppercase tracking-wide text-muted lg:mx-0">
               <span className="h-1.5 w-1.5 rounded-full bg-brand-500" />
               The Roblox Game Marketplace
@@ -55,7 +67,7 @@ export default function LandingPage() {
             </ul>
           </div>
 
-          <div className="relative order-1 min-h-[280px] sm:min-h-[380px] lg:order-2 lg:min-h-[600px]">
+          <div className="relative hidden lg:block lg:min-h-[600px]">
             <div
               className="absolute inset-0 bg-cover bg-[position:center_22%]"
               style={{ backgroundImage: "url('/hero/desk-scene.webp')" }}
