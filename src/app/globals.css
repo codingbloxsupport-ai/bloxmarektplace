@@ -72,68 +72,6 @@ body {
   box-shadow: 0 20px 36px -14px rgba(11, 18, 32, 0.18);
 }
 
-@keyframes float-laptop {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-6px);
-  }
-}
-.animate-float-laptop {
-  animation: float-laptop 6s ease-in-out infinite;
-}
-
-@keyframes card-enter {
-  from {
-    opacity: 0;
-    transform: translateY(10px) scale(0.97);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-/* Each mini marketplace card fades in once, staggered slightly —
-   no looping motion once settled, so it doesn't compete with reading. */
-.animate-hero-card-1,
-.animate-hero-card-2,
-.animate-hero-card-3,
-.animate-hero-card-4 {
-  opacity: 0;
-  animation: card-enter 0.5s ease-out forwards;
-}
-.animate-hero-card-1 {
-  animation-delay: 0s;
-}
-.animate-hero-card-2 {
-  animation-delay: 0.1s;
-}
-.animate-hero-card-3 {
-  animation-delay: 0.2s;
-}
-.animate-hero-card-4 {
-  animation-delay: 0.3s;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .animate-float-laptop,
-  .animate-hero-card-1,
-  .animate-hero-card-2,
-  .animate-hero-card-3,
-  .animate-hero-card-4 {
-    animation: none;
-  }
-  .animate-hero-card-1,
-  .animate-hero-card-2,
-  .animate-hero-card-3,
-  .animate-hero-card-4 {
-    opacity: 1;
-  }
-}
-
 .range-thumb {
   height: 20px;
 }

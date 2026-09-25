@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { ArrowRight, Check } from "lucide-react";
-import { HeroVisual } from "@/components/HeroVisual";
 import { TrustBar } from "@/components/TrustBar";
 import { FeaturedGamesSection } from "@/components/FeaturedGamesSection";
 import { HowItWorksSection } from "@/components/HowItWorksSection";
@@ -16,24 +15,18 @@ const trustPoints = [
 export default function LandingPage() {
   return (
     <div>
-      <section className="relative overflow-hidden border-b border-border bg-white">
-        <div
-          className="absolute inset-0 hidden bg-cover bg-right bg-no-repeat lg:block"
-          style={{
-            backgroundImage:
-              "linear-gradient(to right, white 0%, rgba(255,255,255,.95) 20%, rgba(255,255,255,.68) 42%, rgba(255,255,255,.4) 65%, rgba(255,255,255,.16) 85%, rgba(255,255,255,.16) 100%), url('/hero/roblox-city-background.webp')",
-          }}
-        />
-        <div className="relative mx-auto grid max-w-[1400px] grid-cols-1 items-center gap-14 px-6 py-20 lg:grid-cols-2 lg:gap-10 lg:px-10 lg:py-28">
-          <div className="text-center lg:text-left">
-            <p className="text-sm font-semibold uppercase tracking-wide text-brand-600">
+      <section className="border-b border-border bg-white">
+        <div className="mx-auto grid max-w-[1400px] grid-cols-1 lg:grid-cols-[1fr_1.05fr]">
+          <div className="order-2 flex flex-col justify-center px-6 py-14 text-center lg:order-1 lg:px-10 lg:py-24 lg:text-left">
+            <span className="mx-auto inline-flex w-fit items-center gap-2 rounded-full bg-surface-alt px-3 py-1 text-xs font-semibold uppercase tracking-wide text-muted lg:mx-0">
+              <span className="h-1.5 w-1.5 rounded-full bg-brand-500" />
               The Roblox Game Marketplace
-            </p>
-            <h1 className="mt-3 text-[clamp(2.5rem,6vw,4.75rem)] font-extrabold leading-[0.98] tracking-tight text-ink">
+            </span>
+            <h1 className="mt-4 text-[clamp(2.5rem,6vw,4.75rem)] font-extrabold leading-[0.98] tracking-tight text-ink">
               <span className="block">Buy and sell</span>
               <span className="block text-brand-500">Roblox games.</span>
             </h1>
-            <p className="mx-auto mt-6 max-w-xl text-lg text-slate-700 lg:mx-0">
+            <p className="mx-auto mt-6 max-w-md text-lg text-slate-700 lg:mx-0">
               Verified sellers. Escrow-protected deals. Full ownership,
               guaranteed.
             </p>
@@ -62,7 +55,15 @@ export default function LandingPage() {
             </ul>
           </div>
 
-          <HeroVisual />
+          <div className="relative order-1 min-h-[280px] sm:min-h-[380px] lg:order-2 lg:min-h-[600px]">
+            <div
+              className="absolute inset-0 bg-cover bg-[position:center_22%]"
+              style={{ backgroundImage: "url('/hero/desk-scene.webp')" }}
+              role="img"
+              aria-label="A seller reviewing their Roblox game listings on BloxMarket from a widescreen monitor"
+            />
+            <div className="pointer-events-none absolute inset-y-0 left-0 hidden w-28 bg-gradient-to-r from-white to-transparent lg:block" />
+          </div>
         </div>
       </section>
 
