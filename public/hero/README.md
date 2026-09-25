@@ -1,7 +1,6 @@
-Assets for the landing page hero in `src/app/page.tsx`:
+Asset for the landing page hero in `src/app/page.tsx`:
 
-- `desk-scene.webp` — cropped from a supplied reference photo (a widescreen
-  monitor showing the marketplace, a seller at their desk, a city skyline
-  through the window). The monitor's on-screen content is decorative
-  photography, not live data — real listings still come from the database
-  via `FeaturedGamesSection`.
+- `header-scene.webp` — a supplied reference photo (a seller at their desk
+  working on a game scene, city skyline through the window) used as the
+  full-bleed background for the entire hero/header section. A white
+  gradient overlay keeps the headline and CTAs legible over it.

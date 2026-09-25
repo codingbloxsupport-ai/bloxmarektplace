@@ -16,21 +16,17 @@ export default function LandingPage() {
   return (
     <div>
       <section
-        className="relative overflow-hidden border-b border-border bg-cover bg-center"
-        style={{ backgroundImage: "url('/hero/desk-scene-wash.webp')" }}
+        className="relative overflow-hidden border-b border-border bg-cover bg-[position:62%_30%]"
+        style={{ backgroundImage: "url('/hero/header-scene.webp')" }}
+        role="img"
+        aria-label="A Roblox creator working on their game in a bright studio overlooking a city skyline"
       >
-        <div className="relative mx-6 mt-6 h-56 overflow-hidden rounded-2xl sm:h-72 lg:hidden">
-          <div
-            className="absolute inset-0 bg-cover bg-[position:68%_22%]"
-            style={{ backgroundImage: "url('/hero/desk-scene.webp')" }}
-            role="img"
-            aria-label="A seller reviewing their Roblox game listings on BloxMarket from a widescreen monitor"
-          />
-        </div>
+        <div className="absolute inset-0 bg-gradient-to-r from-white/85 via-white/35 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-white/60 via-transparent to-transparent" />
 
-        <div className="relative mx-auto grid max-w-[1400px] grid-cols-1 lg:grid-cols-[1fr_1.05fr]">
-          <div className="flex flex-col justify-center px-6 py-14 text-center lg:px-10 lg:py-24 lg:text-left">
-            <span className="mx-auto inline-flex w-fit items-center gap-2 rounded-full bg-surface-alt px-3 py-1 text-xs font-semibold uppercase tracking-wide text-muted lg:mx-0">
+        <div className="relative mx-auto max-w-[1400px] px-6 py-14 lg:flex lg:min-h-[620px] lg:items-center lg:px-10 lg:py-24">
+          <div className="text-center lg:max-w-xl lg:text-left">
+            <span className="mx-auto inline-flex w-fit items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-muted backdrop-blur-sm lg:mx-0">
               <span className="h-1.5 w-1.5 rounded-full bg-brand-500" />
               The Roblox Game Marketplace
             </span>
@@ -65,21 +61,6 @@ export default function LandingPage() {
                 </li>
               ))}
             </ul>
-          </div>
-
-          <div className="relative hidden lg:block lg:min-h-[600px]">
-            <div
-              className="absolute inset-0 bg-cover bg-[position:center_22%]"
-              style={{
-                backgroundImage: "url('/hero/desk-scene.webp')",
-                WebkitMaskImage:
-                  "linear-gradient(to right, transparent 0%, black 18%)",
-                maskImage:
-                  "linear-gradient(to right, transparent 0%, black 18%)",
-              }}
-              role="img"
-              aria-label="A seller reviewing their Roblox game listings on BloxMarket from a widescreen monitor"
-            />
           </div>
         </div>
       </section>
