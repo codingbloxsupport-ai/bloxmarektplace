@@ -70,7 +70,13 @@ export default function LandingPage() {
           <div className="relative hidden lg:block lg:min-h-[600px]">
             <div
               className="absolute inset-0 bg-cover bg-[position:center_22%]"
-              style={{ backgroundImage: "url('/hero/desk-scene.webp')" }}
+              style={{
+                backgroundImage: "url('/hero/desk-scene.webp')",
+                WebkitMaskImage:
+                  "linear-gradient(to right, transparent 0%, black 18%)",
+                maskImage:
+                  "linear-gradient(to right, transparent 0%, black 18%)",
+              }}
               role="img"
               aria-label="A seller reviewing their Roblox game listings on BloxMarket from a widescreen monitor"
             />
