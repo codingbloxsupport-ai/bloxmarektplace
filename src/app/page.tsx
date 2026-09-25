@@ -62,7 +62,6 @@ export default function LandingPage() {
               role="img"
               aria-label="A seller reviewing their Roblox game listings on BloxMarket from a widescreen monitor"
             />
-            <div className="pointer-events-none absolute inset-y-0 left-0 hidden w-28 bg-gradient-to-r from-white to-transparent lg:block" />
           </div>
         </div>
       </section>
