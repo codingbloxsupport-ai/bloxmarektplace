@@ -103,6 +103,19 @@ Seller" badge is currently a manual flag an admin could set, deliberately
 kept separate from "has a linked Roblox account" so the two aren't
 conflated.
 
-Not yet built: payments/escrow processing, per-listing Roblox ownership
-verification (see above), and a self-serve admin role system
-(`ADMIN_EMAILS` is an allowlist, not a database-backed role).
+Admin access is now a real `User.role` column (`USER`/`ADMIN`), managed at
+`/admin/users` — an admin can promote or demote any other account.
+`ADMIN_EMAILS` still works as a bootstrap allowlist (so the first admin can
+get in before any row has `role = ADMIN`), but it's no longer the only way
+in.
+
+`/terms` and `/privacy` now have real draft policies instead of "not
+published yet" placeholders — written to match how the product actually
+works today (including an honest note that in-platform payments aren't
+live yet). They're a solid starting point, not legal advice; have a lawyer
+review them, especially the jurisdiction/governing-law language, before
+relying on them for real transactions.
+
+Not yet built: payments/escrow processing (the biggest remaining gap —
+see `/terms` section 5) and per-listing Roblox ownership verification (see
+above).

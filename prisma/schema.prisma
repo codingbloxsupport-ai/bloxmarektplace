@@ -16,6 +16,11 @@ enum ListingStatus {
   REJECTED
 }
 
+enum UserRole {
+  USER
+  ADMIN
+}
+
 model User {
   id              String    @id @default(cuid())
   name            String
@@ -24,6 +29,7 @@ model User {
   robloxUserId    String?   @unique
   robloxUsername  String?
   verifiedSeller  Boolean   @default(false)
+  role            UserRole  @default(USER)
   gamesSold       Int       @default(0)
   listings        Listing[]
   createdAt       DateTime  @default(now())

@@ -1,13 +1,14 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getCurrentUser } from "@/lib/dal";
-import { isAdminEmail } from "@/lib/admin";
+import { isAdmin } from "@/lib/admin";
 import { prisma } from "@/lib/db";
 import { formatPrice } from "@/lib/format";
 import { approveListing, rejectListing } from "@/app/actions/admin";
 
 export default async function AdminListingsPage() {
   const user = await getCurrentUser();
-  if (!user || !user.email || !isAdminEmail(user.email)) notFound();
+  if (!user || !isAdmin(user)) notFound();
 
   const pending = await prisma.listing.findMany({
     where: { status: "PENDING" },
@@ -17,9 +18,17 @@ export default async function AdminListingsPage() {
 
   return (
     <div className="mx-auto max-w-[1000px] px-4 py-8 sm:px-6 lg:px-8">
-      <h1 className="text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
-        Pending Listings
-      </h1>
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <h1 className="text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+          Pending Listings
+        </h1>
+        <Link
+          href="/admin/users"
+          className="text-sm font-semibold text-brand-600 hover:underline"
+        >
+          Manage admins &rarr;
+        </Link>
+      </div>
       <p className="mt-2 text-muted">
         {pending.length} listing{pending.length === 1 ? "" : "s"} awaiting
         review.

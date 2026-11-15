@@ -3,13 +3,14 @@
 import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/db";
 import { getCurrentUser } from "@/lib/dal";
-import { isAdminEmail } from "@/lib/admin";
+import { isAdmin } from "@/lib/admin";
 
 async function requireAdmin() {
   const user = await getCurrentUser();
-  if (!user || !user.email || !isAdminEmail(user.email)) {
+  if (!user || !isAdmin(user)) {
     throw new Error("Forbidden");
   }
+  return user;
 }
 
 export async function approveListing(listingId: string) {
@@ -30,4 +31,16 @@ export async function rejectListing(listingId: string) {
     data: { status: "REJECTED" },
   });
   revalidatePath("/admin/listings");
+}
+
+export async function setUserRole(userId: string, role: "USER" | "ADMIN") {
+  const admin = await requireAdmin();
+  if (userId === admin.id && role === "USER") {
+    throw new Error("You can't remove your own admin access.");
+  }
+  await prisma.user.update({
+    where: { id: userId },
+    data: { role },
+  });
+  revalidatePath("/admin/users");
 }
